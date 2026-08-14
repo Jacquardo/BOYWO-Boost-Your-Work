@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOYWO - Boost Your Work</title>
-    <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#1abc9c">
     <link rel="icon" href="assets/icons/icon-128.png">
     <link rel="stylesheet" href="css/style.css">
@@ -14,15 +13,14 @@
 </head>
 <body>
 
-    <!-- Image de fond dynamique -->
+    <!-- Background (desktop) -->
     <div class="background-image"></div>
 
-    <!-- Conteneur principal -->
+    <!-- Main app window (desktop-focused) -->
     <main class="dashboard-container">
-        
-        <!-- En-tête : Nouveau Logo BOYWO et Météo -->
+        <!-- Header: logo + weather -->
         <header class="top-bar">
-            <div class="logo-container" id="header-logo-btn" style="cursor: pointer; transition: transform 0.2s ease;" title="Retour à l'accueil">
+            <div class="logo-container" id="header-logo-btn" title="Retour à l'accueil" style="cursor:pointer;">
                 <img src="assets/icons/icon-128.png" alt="Icône BOYWO" id="msq-logo">
                 <div class="boywo-text-logo">
                     <h1>BOYWO</h1>
@@ -33,24 +31,23 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="weather-widget" id="top-weather-btn" title="Voir les détails météo">
                 <div id="top-weather-main">--°C / ⏳</div>
                 <div id="top-weather-loc">Recherche position...</div>
             </div>
         </header>
 
+        <!-- Pages container: only desktop-relevant pages kept -->
         <div id="pages-container">
-            
-            <!-- PAGE 1 : ACCUEIL -->
+
+            <!-- ACCUEIL (Desktop) -->
             <div id="accueil" class="page-section">
-                
                 <section class="time-widget">
                     <h1 id="clock-time">00:00</h1>
                     <p id="clock-date">Chargement de la date...</p>
                 </section>
 
-                <!-- Carte Météo Avancée -->
                 <div class="widget card weather-advanced-card" id="weather-advanced-card" style="display: none;">
                     <div class="wa-header">
                         <div class="wa-location">📍 <span id="wa-location">Chargement...</span></div>
@@ -70,9 +67,9 @@
                     </div>
                 </div>
 
-                <section class="widgets-grid" style="display: flex; flex-direction: column;">
-                    
-                    <!-- WIDGET : TO-DO LIST AVANCÉE -->
+                <section class="widgets-grid">
+
+                    <!-- To-do widget -->
                     <div class="widget card">
                         <div class="widget-header">
                             <h2>✅ Mes Tâches</h2>
@@ -81,12 +78,10 @@
                         <div id="new-task-form" class="form-panel" style="display: none;">
                             <input type="text" id="task-title" class="msq-input" placeholder="Titre de la tâche" style="font-weight: bold;">
                             <textarea id="task-desc" class="msq-input" placeholder="Description (optionnel)" style="height: 60px; resize: none;"></textarea>
-                            
                             <div style="margin-bottom: 10px;">
                                 <label for="task-reminder" style="font-size: 0.8rem; display: block; margin-bottom: 4px;">⏰ Rappel (Optionnel)</label>
                                 <input type="datetime-local" id="task-reminder" class="msq-input">
                             </div>
-                            
                             <div style="margin-bottom: 15px;">
                                 <label for="task-pin" class="checkbox-label">
                                     <input type="checkbox" id="task-pin"> 📌 Épingler
@@ -98,54 +93,10 @@
                             </div>
                         </div>
 
-                        <!-- Conteneur d'affichage de la tâche unique avec navigation -->
                         <div id="todo-list"></div>
                     </div>
 
-                    <!-- MODAL (POPUP) DES DÉTAILS DE LA TÂCHE -->
-                    <div id="task-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(3px);">
-                        <div class="form-panel" style="background: var(--card-bg); width: 90%; max-width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); padding: 20px; border-radius: 15px; position: relative;">
-                            
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <h3 style="margin: 0; color: var(--msq-mint); font-size: 1.1rem;">Détails de la tâche</h3>
-                                <button id="btn-close-task-modal" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-light);">✕</button>
-                            </div>
-                            
-                            <div id="task-modal-late-warning" style="display: none; background: rgba(231, 76, 60, 0.1); color: #e74c3c; font-size: 0.85rem; margin-bottom: 15px; font-weight: bold; padding: 8px; border-radius: 8px; text-align: center;">
-                                ⚠️ Cette tâche est en retard !
-                            </div>
-
-                            <input type="hidden" id="modal-task-id">
-                            
-                            <label for="modal-task-title" style="font-size: 0.8rem; color: var(--text-light);">Titre</label>
-                            <input type="text" id="modal-task-title" class="msq-input" style="font-weight: bold; margin-bottom: 10px;">
-                            
-                            <label for="modal-task-desc" style="font-size: 0.8rem; color: var(--text-light);">Description</label>
-                            <textarea id="modal-task-desc" class="msq-input" style="height: 60px; resize: none; margin-bottom: 10px;"></textarea>
-
-                            <div style="margin-bottom: 15px;">
-                                <label for="modal-task-reminder" style="font-size: 0.8rem; display: block; margin-bottom: 4px;">⏰ Date et heure du rappel</label>
-                                <div style="display: flex; gap: 10px;">
-                                    <input type="datetime-local" id="modal-task-reminder" class="msq-input" style="flex: 2; margin-bottom: 0;">
-                                    <button id="btn-postpone-task" class="btn-outline" style="flex: 1; padding: 0 5px; font-size: 0.75rem;" title="Mettre à jour la date/heure">🔄 Reporter</button>
-                                </div>
-                            </div>
-
-                            <div style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
-                                <label for="modal-task-pin" class="checkbox-label">
-                                    <input type="checkbox" id="modal-task-pin"> 📌 Épingler
-                                </label>
-                                <span id="modal-task-status" style="font-size: 0.8rem; font-weight: bold; color: var(--text-light);">En cours</span>
-                            </div>
-
-                            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                                <button id="btn-save-modal-task" class="btn-outline" style="flex: 1; border-color: var(--msq-mint); color: var(--msq-mint);">💾 Sauvegarder</button>
-                            </div>
-                            <button id="btn-complete-task" class="btn-primary" style="width: 100%; background: linear-gradient(135deg, #27ae60, #2ecc71); border: none;">✅ Terminé (Archiver)</button>
-                        </div>
-                    </div>
-
-                    <!-- WIDGET : NOTES AVANCÉES -->
+                    <!-- Notes widget -->
                     <div class="widget card">
                         <div class="widget-header">
                             <h2>📝 Mes Notes</h2>
@@ -154,7 +105,6 @@
                         <div id="new-note-form" class="form-panel" style="display: none;">
                             <input type="text" id="note-title" class="msq-input" placeholder="Titre de la note" style="font-weight: bold;">
                             <textarea id="note-content" class="msq-input" placeholder="Contenu de la note" style="height: 100px; resize: vertical;"></textarea>
-                            
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                                 <div style="display: flex; gap: 5px; align-items: center;">
                                     <div class="note-color-picker" data-color="#ffffff" style="background: #ffffff; border: 1px solid #ccc;"></div>
@@ -165,7 +115,6 @@
                                 <input type="file" id="note-file-input" style="display: none;">
                                 <button id="btn-attach-file" class="btn-outline" style="height: 30px; font-size: 0.8rem;">📎 Fichier</button>
                             </div>
-                            
                             <div style="display: flex; gap: 10px; width: 100%;">
                                 <button id="btn-cancel-note" class="btn-cancel" style="flex: 1;">✕ Annuler</button>
                                 <button id="btn-save-note" class="btn-primary" style="margin-top: 0; flex: 1;">Enregistrer</button>
@@ -173,139 +122,35 @@
                         </div>
                         <div id="notes-list" style="display: grid; grid-template-columns: 1fr; gap: 10px; max-height: 300px; overflow-y: auto;"></div>
                     </div>
+
                 </section>
             </div>
 
-            <!-- PAGE 2 : OUTILS -->
+            <!-- OUTILS (Desktop-relevant) -->
             <div id="outils" class="page-section" style="display: none;">
-                
-                <!-- Widget Planning Automatique -->
+
+                <!-- Pomodoro / Planning -->
                 <div class="widget card" style="text-align: center;">
                     <div class="widget-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; min-height: 32px;">
                         <h2 style="display: flex; align-items: center; margin: 0; font-size: 1.05rem; line-height: 1;">📅 Mon Planning</h2>
-                        <button id="btn-open-settings" style="background: none; border: none; cursor: pointer; color: var(--text-main); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; padding: 0; margin: 0;" title="Configurer ma journée">
-                            <svg width="20" height="20" viewBox="0 0 24 24" style="display: block;">
-                                <path fill="currentColor" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-                            </svg>
+                        <button id="btn-open-settings" style="background: none; border: none; cursor: pointer; color: var(--text-main);">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="display: block;"><path fill="currentColor" d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
                         </button>
                     </div>
-                    
                     <div id="pomodoro-timer-view">
                         <div id="current-phase-label" style="font-weight: 600; color: var(--msq-mint); margin-bottom: 5px;">Chargement...</div>
                         <div class="pomodoro-timer" id="pomodoro-time" style="font-size: 3.2rem;">00:00:00</div>
                         <div id="next-phase-label" style="font-size: 0.85rem; color: var(--text-light);">--</div>
                     </div>
-
-                    <div id="pomodoro-settings-view" class="form-panel" style="display: none; text-align: left;">
-                        <div style="font-size: 0.85rem; margin-bottom: 10px;">
-                            <label for="set-day-start" style="display:block; margin-bottom:4px;">🟢 Début de journée</label>
-                            <input type="time" id="set-day-start" class="msq-input" value="09:00">
-                        </div>
-                        <div style="font-size: 0.85rem; margin-bottom: 10px;">
-                            <label for="set-lunch-start" style="display:block; margin-bottom:4px;">🍽️ Pause Déjeuner</label>
-                            <div style="display: flex; gap: 5px; align-items: center;">
-                                <input type="time" id="set-lunch-start" class="msq-input"> à 
-                                <input type="time" id="set-lunch-end" class="msq-input">
-                            </div>
-                        </div>
-                        <div style="font-size: 0.85rem; margin-bottom: 10px;">
-                            <label for="set-break-start" style="display:block; margin-bottom:4px;">☕ Petite Pause</label>
-                            <div style="display: flex; gap: 5px; align-items: center;">
-                                <input type="time" id="set-break-start" class="msq-input"> à 
-                                <input type="time" id="set-break-end" class="msq-input">
-                            </div>
-                        </div>
-                        <div style="font-size: 0.85rem; margin-bottom: 15px;">
-                            <label for="set-day-end" style="display:block; margin-bottom:4px;">🏁 Fin de journée</label>
-                            <input type="time" id="set-day-end" class="msq-input" value="18:30">
-                        </div>
-                        
-                        <div style="display: flex; gap: 10px; width: 100%;">
-                            <button id="btn-cancel-settings" class="btn-cancel" style="flex: 1;">✕ Annuler</button>
-                            <button id="btn-save-settings" class="btn-primary" style="margin-top: 0; flex: 1;">Activer</button>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Widget Horloge Flottante (ACCORDÉON) -->
+                <!-- Text converter -->
                 <div class="widget card" style="margin-top: 15px;">
-                    <div class="widget-header" id="floating-clock-header" style="cursor: pointer; margin-bottom: 0;">
-                        <h2 style="margin: 0;">🌐 Horloge Flottante</h2>
-                        <span id="floating-clock-arrow" style="color: var(--msq-mint); font-size: 0.9rem; transition: transform 0.3s ease; transform: rotate(-90deg);">▼</span>
-                    </div>
-                    
-                    <div id="floating-clock-content" style="display: none; margin-top: 15px;">
-                        <button id="toggle-floating" class="btn-outline" style="width: 100%; margin-bottom: 15px; border-radius: 12px; padding: 10px;">Afficher l'horloge</button>
-                        
-                        <div class="floating-settings">
-                            
-                            <!-- Choix de la Police -->
-                            <div class="custom-select-container" id="custom-floating-font-select" style="margin-bottom: 15px;">
-                                <div class="custom-select-trigger">
-                                    <span class="selected-text" style="font-family: 'Poppins', sans-serif;">✒️ Poppins (Défaut)</span>
-                                    <span class="arrow">▼</span>
-                                </div>
-                                <div class="custom-options" style="max-height: 150px; overflow-y: auto;">
-                                    <div class="custom-option selected" data-value="'Poppins', sans-serif" style="font-family: 'Poppins', sans-serif;">✒️ Poppins (Défaut)</div>
-                                    <div class="custom-option" data-value="Georgia, serif" style="font-family: Georgia, serif;">Georgia</div>
-                                    <div class="custom-option" data-value="'Comic Sans MS', cursive" style="font-family: 'Comic Sans MS', cursive;">Comic Sans MS</div>
-                                    <div class="custom-option" data-value="'Trebuchet MS', sans-serif" style="font-family: 'Trebuchet MS', sans-serif;">Trebuchet MS</div>
-                                    <div class="custom-option" data-value="Arial, sans-serif" style="font-family: Arial, sans-serif;">Arial</div>
-                                    <div class="custom-option" data-value="Verdana, sans-serif" style="font-family: Verdana, sans-serif;">Verdana</div>
-                                    <div class="custom-option" data-value="'Times New Roman', serif" style="font-family: 'Times New Roman', serif;">Times New Roman</div>
-                                </div>
-                            </div>
-
-                            <!-- Choix du Thème -->
-                            <div class="custom-select-container" id="custom-theme-select" style="margin-bottom: 15px;">
-                                <div class="custom-select-trigger">
-                                    <span class="selected-text">🎨 Thème BOYWO</span>
-                                    <span class="arrow">▼</span>
-                                </div>
-                                <div class="custom-options">
-                                    <div class="custom-option selected" data-value="msq">🎨 Thème BOYWO</div>
-                                    <div class="custom-option" data-value="light">⚪ Clair</div>
-                                    <div class="custom-option" data-value="dark">⚫ Sombre</div>
-                                    <div class="custom-option" data-value="flamme">🔥 Style Flamme</div>
-                                    <div class="custom-option" data-value="fleur">🌸 Style Fleur</div>
-                                    <div class="custom-option" data-value="nature">🌿 Style Nature</div>
-                                </div>
-                            </div>
-
-                            <!-- Choix du Fuseau -->
-                            <div class="custom-select-container" id="custom-timezone-select" style="margin-bottom: 15px;">
-                                <div class="custom-select-trigger">
-                                    <span class="selected-text">📍 Heure locale</span>
-                                    <span class="arrow">▼</span>
-                                </div>
-                                <div class="custom-options">
-                                    <div class="custom-option selected" data-value="local">📍 Heure locale</div>
-                                    <div class="custom-option" data-value="Europe/Paris">🗼 Paris (France)</div>
-                                    <div class="custom-option" data-value="America/New_York">🗽 New York (USA)</div>
-                                    <div class="custom-option" data-value="Asia/Tokyo">🗻 Tokyo (Japon)</div>
-                                </div>
-                            </div>
-
-                            <div class="resize-controls">
-                                <span style="font-size: 0.85rem; font-weight: 600; color: var(--msq-mint);">Taille Horloge & Texte</span>
-                                <button id="size-minus" class="size-btn">-</button>
-                                <button id="size-plus" class="size-btn">+</button>
-                                <button id="size-reset" class="size-btn">↺</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Convertisseur de texte (ACCORDÉON) -->
-                <div class="widget card" style="margin-top: 15px;">
-                    <div class="widget-header" id="text-converter-header" style="cursor: pointer; margin-bottom: 0;">
+                    <div class="widget-header" style="margin-bottom: 0;">
                         <h2 style="margin: 0;">🔠 Convertisseur de texte</h2>
-                        <span id="text-converter-arrow" style="color: var(--msq-mint); font-size: 0.9rem; transition: transform 0.3s ease; transform: rotate(-90deg);">▼</span>
                     </div>
-                    
-                    <div id="text-converter-content" style="display: none; margin-top: 15px;">
+                    <div style="margin-top: 15px;">
                         <textarea id="text-converter-input" class="msq-input" placeholder="Tapez ou collez votre texte ici..." style="height: 100px; resize: vertical; margin-bottom: 10px;"></textarea>
-                        
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                             <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-light);" id="text-word-count">Mots : 0 / 200</span>
                             <button id="btn-copy-text" class="btn-outline" style="height: 30px; font-size: 0.8rem; padding: 0 10px;">📋 Copier</button>
@@ -317,53 +162,19 @@
                     </div>
                 </div>
 
-                <!-- Image Optimizer (ACCORDÉON) -->
+                <!-- Image optimizer -->
                 <div class="widget card" style="margin-top: 15px; text-align: center;">
-                    <div class="widget-header" id="image-cleaner-header" style="cursor: pointer; margin-bottom: 0;">
+                    <div class="widget-header" style="margin-bottom: 0;">
                         <h2 style="margin: 0;">✨ Image Optimizer</h2>
-                        <span id="image-cleaner-arrow" style="color: var(--msq-mint); font-size: 0.9rem; transition: transform 0.3s ease; transform: rotate(-90deg);">▼</span>
                     </div>
-                    
-                    <div id="image-cleaner-content" style="display: none; margin-top: 15px;">
-                        <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 15px;">
-                            Supprimer les métadonnées de l'image, recadrez pour les réseaux sociaux et générez des icônes.
-                        </p>
-                        <div id="image-cleaner-dropzone" style="border: 2px dashed var(--msq-mint); border-radius: 12px; padding: 20px; background: rgba(26, 188, 156, 0.05); cursor: pointer; transition: 0.3s; margin-bottom: 15px;">
+                    <div style="margin-top: 15px;">
+                        <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 15px;">Supprimer les métadonnées de l'image, recadrer pour les réseaux sociaux et générer des icônes.</p>
+                        <div id="image-cleaner-dropzone" style="border: 2px dashed var(--msq-mint); border-radius: 12px; padding: 20px; background: rgba(26, 188, 156, 0.05); cursor: pointer;">
                             <span id="image-cleaner-text" style="font-weight: 600; color: var(--msq-mint);">📂 Cliquez ou glissez une image</span>
                             <input type="file" id="image-cleaner-input" accept="image/png, image/jpeg, image/webp" style="display: none;">
                         </div>
-
-                        <div id="image-cleaner-controls" style="display: none;">
-                            <div style="margin-bottom: 15px;">
-                                <img id="image-cleaner-preview" src="" alt="Aperçu" style="max-width: 100%; max-height: 150px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                            </div>
-
-                            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                <div style="display: flex; flex-direction: column; align-items: center;">
-                                    <label for="img-width" style="font-size: 0.7rem; color: var(--text-light);">Largeur (px)</label>
-                                    <input type="number" id="img-width" class="msq-input" style="width: 80px; text-align: center; padding: 8px; margin: 0;">
-                                </div>
-                                <button id="btn-lock-ratio" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; margin-top: 15px;" title="Verrouiller les proportions">🔒</button>
-                                <div style="display: flex; flex-direction: column; align-items: center;">
-                                    <label for="img-height" style="font-size: 0.7rem; color: var(--text-light);">Hauteur (px)</label>
-                                    <input type="number" id="img-height" class="msq-input" style="width: 80px; text-align: center; padding: 8px; margin: 0;">
-                                </div>
-                            </div>
-
-                            <div class="custom-select-container" id="social-preset-select" style="margin-bottom: 15px;">
-                                <div class="custom-select-trigger" style="padding: 8px 15px;">
-                                    <span class="selected-text">✂️ Formats Réseaux Sociaux</span>
-                                    <span class="arrow">▼</span>
-                                </div>
-                                <div class="custom-options" style="max-height: 150px; overflow-y: auto;">
-                                    <div class="custom-option selected" data-value="none">✂️ Formats Réseaux Sociaux</div>
-                                    <div class="custom-option" data-value="1">📸 Instagram Carré (1:1)</div>
-                                    <div class="custom-option" data-value="0.8">📱 Instagram Portrait (4:5)</div>
-                                    <div class="custom-option" data-value="0.5625">📱 Story / TikTok (9:16)</div>
-                                    <div class="custom-option" data-value="1.7777">📺 Vidéo / YouTube (16:9)</div>
-                                    <div class="custom-option" data-value="1.91">💼 LinkedIn / Facebook (1.91:1)</div>
-                                </div>
-                            </div>
+                        <div id="image-cleaner-controls" style="display: none; margin-top: 12px;">
+                            <div style="margin-bottom: 15px;"><img id="image-cleaner-preview" src="" alt="Aperçu" style="max-width: 100%; max-height: 150px; border-radius: 8px;"></div>
                             <div style="display: flex; flex-direction: column; gap: 10px;">
                                 <button id="btn-download-clean-image" class="btn-primary" style="width: 100%;">⬇️ Télécharger l'image</button>
                                 <button id="btn-generate-icons" class="btn-outline" style="width: 100%; border-radius: 12px; padding: 10px;">🧩 Générer les icônes (16,32,48,128)</button>
@@ -373,103 +184,51 @@
                         <canvas id="image-cleaner-canvas" style="display: none;"></canvas>
                     </div>
                 </div>
+
             </div>
 
-            <!-- PAGE 3 : MÉDIAS -->
+            <!-- MEDIAS (Desktop) -->
             <div id="media" class="page-section" style="display: none;">
                 <div class="audio-app-container" id="audio-app-container">
-                    
-                    <!-- PANNEAU GAUCHE : Import & Lecteur -->
                     <div class="audio-left-panel">
-                        
-                        <!-- Zone de Drop -->
                         <div id="audio-import-zone" class="audio-import-dropzone">
                             <div class="upload-icon">⬆️</div>
                             <p>Glissez & Déposez vos fichiers audio ici</p>
                         </div>
-
-                        <!-- Boutons d'importation -->
                         <div class="audio-import-buttons">
                             <button id="btn-add-audio-files" class="btn-primary">📄 Ajouter des fichiers</button>
-                            <button id="btn-add-audio-folder" class="btn-primary">📁 Ajouter un dossier</button>
                             <input type="file" id="audio-file-input" multiple accept="audio/mpeg, audio/ogg, audio/wav" style="display: none;">
-                            <input type="file" id="audio-folder-input" webkitdirectory directory multiple style="display: none;">
                         </div>
 
-                        <!-- Lecteur Multimédia -->
-                        <div class="audio-main-player" style="position: relative;">
-                            
-                            <!-- Titre, Artiste et Actions -->
+                        <div class="audio-main-player">
                             <div class="track-header-row">
                                 <div class="track-info">
                                     <strong id="current-track-title" class="track-title-marquee">Aucune piste</strong>
                                     <span class="track-artist">BOYWO Player</span>
                                 </div>
-                                
                                 <div class="track-actions">
                                     <span class="icon-heart" id="btn-track-heart" title="Ajouter aux favoris">🤍</span>
-                                    <span class="icon-dots" id="btn-track-options" title="Plus d'options">⋮</span>
-                                    
-                                    <!-- Menu déroulant des options -->
-                                    <div class="audio-options-menu" id="audio-options-menu" style="display: none;">
-                                        <div class="audio-option-item" style="cursor: default;">
-                                            <label for="audio-speed-select">🏃 Vitesse :</label>
-                                            <select id="audio-speed-select" style="background: transparent; border: none; outline: none; font-size: 0.8rem; font-weight: 600; color: var(--text-main); cursor: pointer; text-align: right;">
-                                                <option value="0.5">0.5x</option>
-                                                <option value="1" selected>1.0x</option>
-                                                <option value="1.5">1.5x</option>
-                                                <option value="2">2.0x</option>
-                                            </select>
-                                        </div>
-                                        <div class="audio-option-item" id="opt-fav">🤍 Ajouter aux favoris</div>
-                                        <div class="audio-option-item" id="opt-eq">🎛️ Égaliseur intégré</div>
-                                        <div class="audio-option-item" id="opt-mini">👁️ Mode discret : <span id="val-mini">Off</span></div>
-                                        <div class="audio-option-item" id="opt-bg">🔄 Arrière-plan : <span id="val-bg">On</span></div>
-                                    </div>
                                 </div>
-                            </div> 
-
-                            <!-- Effet Visualiseur Audio -->
-                            <div class="css-visualizer" id="audio-visualizer">
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
-                                <div class="bar"></div>
                             </div>
 
-                            <!-- Barre de progression -->
+                            <div class="css-visualizer" id="audio-visualizer">
+                                <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                            </div>
+
                             <div class="track-progress-row">
                                 <span id="audio-current-time" class="time-label">0:00</span>
                                 <input type="range" id="audio-progress-bar" value="0" min="0" max="100" step="0.1" class="modern-range">
                                 <span id="audio-total-time" class="time-label">0:00</span>
                             </div>
 
-                            <!-- Contrôles de lecture -->
                             <div class="track-controls-row">
-                                <button id="btn-shuffle" class="audio-icon-btn" title="Lecture aléatoire">
-                                    <svg width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/></svg>
-                                </button>
-                                <button id="btn-prev-track" class="audio-icon-btn" title="Précédent">
-                                    <svg width="26" height="26" viewBox="0 0 24 24"><path fill="currentColor" d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
-                                </button>
+                                <button id="btn-prev-track" class="audio-icon-btn" title="Précédent">⏮️</button>
                                 <div class="play-btn-wrapper" id="play-btn-wrapper">
-                                    <div class="play-glow"></div>
-                                    <button id="btn-play-pause" class="audio-play-btn-big" title="Lecture / Pause">
-                                        <svg id="icon-play" width="34" height="34" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-                                        <svg id="icon-pause" width="34" height="34" viewBox="0 0 24 24" style="display: none;"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                                    </button>
+                                    <button id="btn-play-pause" class="audio-play-btn-big" title="Lecture / Pause">▶️</button>
                                 </div>
-                                <button id="btn-next-track" class="audio-icon-btn" title="Suivant">
-                                    <svg width="26" height="26" viewBox="0 0 24 24"><path fill="currentColor" d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-                                </button>
-                                <button id="btn-repeat" class="audio-icon-btn" title="Répéter">
-                                    <svg id="icon-repeat-all" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
-                                    <svg id="icon-repeat-one" width="22" height="22" viewBox="0 0 24 24" style="display: none;"><path fill="currentColor" d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4zm-4-2V9h-1l-2 1v1h1.5v4H13z"/></svg>
-                                </button>
+                                <button id="btn-next-track" class="audio-icon-btn" title="Suivant">⏭️</button>
                             </div>
 
-                            <!-- Barre du bas : Volume & Playlist -->
                             <div class="track-bottom-row">
                                 <div class="audio-volume-area">
                                     <span id="volume-icon" class="vol-icon" style="cursor:pointer; font-size:0.9rem;">🔊</span>
@@ -478,264 +237,29 @@
                                 </div>
                                 <button id="btn-toggle-playlist" class="btn-toggle-playlist" title="Afficher/Masquer la Playlist">🎼</button>
                             </div>
-                           <!-- Notification Toast -->
-                            <div id="audio-toast" class="audio-toast">
-                                <span id="audio-toast-icon">🔔</span>
-                                <span id="audio-toast-msg">Notification</span>
-                            </div>
-                        </div> 
+
+                        </div>
                     </div>
 
-                    <!-- PANNEAU DROIT : Playlist (Overlay) -->
                     <div id="audio-playlist-panel" class="audio-playlist-panel">
                         <div class="playlist-header">
                             <h3 class="audio-section-title">Playlist</h3>
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <span id="playlist-count" style="font-size:0.7rem; color:var(--text-light);">0 Morceaux</span>
-                                <button id="btn-filter-fav" class="btn-outline" style="height: 24px; padding: 0 8px; font-size: 0.7rem; border-radius: 12px;" title="Afficher uniquement les favoris">🤍</button>
-                                <button id="btn-select-playlist" class="btn-clear-txt" style="color: var(--msq-mint);" title="Sélectionner des morceaux">Sélect.</button>
                                 <button id="btn-close-playlist" class="btn-close-playlist" title="Fermer la playlist">✖</button>
                             </div>
                         </div>
-                        
-                        <!-- BARRE D'ACTIONS MULTIPLES (Cachée par défaut) -->
-                        <div id="playlist-selection-actions" style="display: none; justify-content: space-between; align-items: center; margin-bottom: 10px; background: rgba(26,188,156,0.1); padding: 8px 15px; border-radius: 8px;">
-                            <span id="selection-count" style="font-size: 0.8rem; font-weight: bold; color: var(--msq-mint);">0 sélectionné(s)</span>
-                            <div style="display: flex; gap: 15px;">
-                                <button id="btn-bulk-fav" style="background:none; border:none; cursor:pointer; font-size: 1.1rem;" title="Ajouter aux favoris">❤️</button>
-                                <button id="btn-bulk-delete" style="background:none; border:none; cursor:pointer; font-size: 1.1rem;" title="Mettre à la corbeille">🗑️</button>
-                                <button id="btn-cancel-selection" style="background:none; border:none; cursor:pointer; font-size: 0.8rem; font-weight: bold; color: var(--text-light);">Annuler</button>
-                            </div>
-                        </div>
-
-                        <ul id="audio-playlist" class="audio-playlist-modern">
-                            <!-- Les pistes apparaîtront ici -->
-                        </ul>
+                        <ul id="audio-playlist" class="audio-playlist-modern"></ul>
                     </div>
-             
-                    <!-- PANNEAU ÉGALISEUR (Overlay) -->
-                    <div id="audio-eq-panel" class="audio-eq-panel">
-                        <div class="eq-header">
-                            <h3 class="audio-section-title">🎛️ Égaliseur</h3>
-                            <button id="btn-close-eq" class="btn-close-playlist" title="Fermer l'égaliseur">✖</button>
-                        </div>
-                        
-                        <div class="eq-preset-container" style="margin-bottom: 20px;">
-                            <label for="eq-preset-select" style="font-size: 0.8rem; color: var(--text-light); font-weight: 600;">Préréglages :</label>
-                            <select id="eq-preset-select" class="msq-input" style="padding: 8px; margin-top: 5px; cursor: pointer;">
-                                <option value="normal" selected>Normal</option>
-                                <option value="bass_boost">Bass Boost (Basses ++)</option>
-                                <option value="rock">Rock</option>
-                                <option value="pop">Pop</option>
-                                <option value="jazz">Jazz</option>
-                                <option value="classical">Classique</option>
-                            </select>
-                        </div>
-                        <div class="eq-sliders">
-                            <div class="eq-slider-group">
-                                <label for="eq-slider-bass">Basses</label>
-                                <input type="range" id="eq-slider-bass" class="modern-range" min="-15" max="15" step="1" value="0">
-                                <span id="eq-val-bass">0 dB</span>
-                            </div>
-                            <div class="eq-slider-group">
-                                <label for="eq-slider-mid">Médiums</label>
-                                <input type="range" id="eq-slider-mid" class="modern-range" min="-15" max="15" step="1" value="0">
-                                <span id="eq-val-mid">0 dB</span>
-                            </div>
-                            <div class="eq-slider-group">
-                                <label for="eq-slider-treble">Aigus</label>
-                                <input type="range" id="eq-slider-treble" class="modern-range" min="-15" max="15" step="1" value="0">
-                                <span id="eq-val-treble">0 dB</span>
-                            </div>
-                        </div>
-                    </div>       
-                    
+
                     <audio id="main-audio-element" style="display: none;"></audio>
                 </div>
             </div>
 
-            <!-- PAGE 4 : THÈMES ET PARAMÈTRES -->
-            <div id="themes" class="page-section" style="display: none;">
-                
-                <!-- Thèmes (ACCORDÉON) -->
-                <div class="widget card">
-                    <div class="widget-header" id="theme-palette-header" style="cursor: pointer; margin-bottom: 0;">
-                        <h2 style="margin: 0;">🎨 Thèmes</h2>
-                        <span id="theme-palette-arrow" style="color: var(--msq-mint); font-size: 0.9rem; transition: transform 0.3s ease; transform: rotate(-90deg);">▼</span>
-                    </div>
-                    
-                    <div id="theme-palette-content" style="display: none; margin-top: 15px;">
-                        <!-- 1. Couleurs -->
-                        <div style="margin-bottom: 25px;">
-                            <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin-bottom: 10px;">1. Couleurs de fonds</p>
-                            <div id="theme-palette" class="theme-palette"></div>
-                        </div>
-                        <!-- 2. Police de texte -->
-                        <div style="margin-bottom: 25px;">
-                            <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin-bottom: 10px;">2. Style de texte</p>
-                            
-                            <div class="custom-select-container" id="custom-font-select">
-                                <div class="custom-select-trigger">
-                                    <span class="selected-text" style="font-family: 'Poppins', sans-serif;">Poppins (Défaut)</span>
-                                    <span class="arrow">▼</span>
-                                </div>
-                                <div class="custom-options">
-                                    <div class="custom-option selected" data-value="'Poppins', sans-serif" style="font-family: 'Poppins', sans-serif;">Poppins (Défaut)</div>
-                                    <div class="custom-option" data-value="Georgia, serif" style="font-family: Georgia, serif;">Georgia</div>
-                                    <div class="custom-option" data-value="Verdana, sans-serif" style="font-family: Verdana, sans-serif;">Verdana</div>
-                                    <div class="custom-option" data-value="'Comic Sans MS', cursive" style="font-family: 'Comic Sans MS', cursive;">Comic Sans MS</div>
-                                    <div class="custom-option" data-value="Arial, sans-serif" style="font-family: Arial, sans-serif;">Arial</div>
-                                    <div class="custom-option" data-value="'Trebuchet MS', sans-serif" style="font-family: 'Trebuchet MS', sans-serif;">Trebuchet MS</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 3. Taille du texte -->
-                        <div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                                <label for="font-size-slider" style="font-size: 0.85rem; font-weight: 600; color: var(--text-main); margin: 0;">3. Taille du texte</label>
-                                <span id="font-size-display" style="font-size: 0.8rem; color: var(--msq-mint); font-weight: bold;">88%</span>
-                            </div>
-                            <input type="range" id="font-size-slider" min="75" max="125" step="1" value="88" style="width: 100%; accent-color: var(--msq-mint);">
-                            <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-light); margin-top: 5px;">
-                                <span>75%</span>
-                                <span>125%</span>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-
-                    <!-- Notifications -->
-                <div class="widget card" style="margin-top: 15px;">
-                    <div class="widget-header" style="margin-bottom: 10px;">
-                        <h2 style="margin: 0;">🔔 Notifications</h2>
-                    </div>
-                    <p style="font-size: 0.85rem; margin-bottom: 15px; color: var(--text-light);">Activez ou désactivez les alertes et notifications de l'application (ex: changement de piste multimédia).</p>
-                    <button id="opt-notif" class="btn-outline" style="width: 100%; border-radius: 12px; padding: 10px;">
-                        🔔 Notifications : <span id="val-notif">Off</span>
-                    </button>
-                </div>
-               
-                
-                <!-- Localisation Météo (ACCORDÉON) -->
-                <div class="widget card" style="margin-top: 15px;">
-                    <div class="widget-header" id="weather-location-header" style="cursor: pointer; margin-bottom: 0;">
-                        <h2 style="margin: 0;">🌍 Localisation</h2>
-                        <span id="weather-location-arrow" style="color: var(--msq-mint); font-size: 0.9rem; transition: transform 0.3s ease; transform: rotate(-90deg);">▼</span>
-                    </div>
-                    <div id="weather-location-content" style="display: none; margin-top: 15px;">
-                        <p style="font-size: 0.85rem; margin-bottom: 15px;">Votre ville par défaut (si GPS bloqué) :</p>
-                        <div class="custom-select-container" id="custom-city-select">
-                            <div class="custom-select-trigger">
-                                <span class="selected-text">📍 Antananarivo (Madagascar)</span>
-                                <span class="arrow">▼</span>
-                            </div>
-                            <div class="custom-options" style="max-height: 150px; overflow-y: auto;">
-                                <div class="custom-option selected" data-value="-18.8792,47.5079">📍 Antananarivo (Madagascar)</div>
-                                <div class="custom-option" data-value="48.8566,2.3522">🗼 Paris (France)</div>
-                                <div class="custom-option" data-value="50.8503,4.3517">🍫 Bruxelles (Belgique)</div>
-                                <div class="custom-option" data-value="46.2044,6.1432">🏔️ Genève (Suisse)</div>
-                                <div class="custom-option" data-value="45.4215,-75.6972">🍁 Ottawa (Canada)</div>
-                                <div class="custom-option" data-value="14.6928,-17.4467">🌴 Dakar (Sénégal)</div>
-                                <div class="custom-option" data-value="5.3599,-4.0083">🐘 Abidjan (Côte d'Ivoire)</div>
-                                <div class="custom-option" data-value="51.5074,-0.1278">💂 Londres (Royaume-Uni)</div>
-                                <div class="custom-option" data-value="40.7128,-74.0060">🗽 New York (USA)</div>
-                                <div class="custom-option" data-value="35.6895,139.6917">🗻 Tokyo (Japon)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lien d'installation PWA -->
-                <div class="widget card" style="margin-top: 15px;">
-                    <h2>📱 Version Mobile</h2>
-                    <p style="font-size: 0.85rem; margin-bottom: 15px;">Installez BOYWO sur votre téléphone pour l'utiliser comme une vraie app !</p>
-                    <a href="https://jacquardo.github.io/msq-assistant" target="_blank" class="btn-primary" style="text-decoration: none; text-align: center; width: 100%;">
-                        Ouvrir la page web
-                    </a>
-                </div>
-            </div>
-
-            <!-- PAGE 5 : EXPLORATEUR DE FICHIERS -->
-            <div id="fichiers" class="page-section" style="display: none; height: 100%; position: relative; padding: 0;">
-                
-                <!-- Barre supérieure -->
-                <div class="exp-top-bar">
-                    <button id="btn-exp-menu" class="exp-icon-btn" title="Menu">☰</button>
-                    <h2 class="exp-title">Fichiers</h2>
-                    <div class="exp-top-actions">
-                        <button class="exp-icon-btn" title="Rechercher">🔍</button>
-                        <button id="btn-exp-view" class="exp-icon-btn" title="Changer de vue">🔲</button>
-                        <button class="exp-icon-btn" title="Options">⋮</button>
-                    </div>
-                </div>
-
-                <!-- Fil d'Ariane -->
-                <div class="exp-breadcrumb">
-                    <!-- Fil généré par le JS -->
-                </div>
-
-                <!-- Conteneur principal (Grille ou Liste) -->
-                <div id="exp-content" class="exp-content view-list">
-                    <!-- Fichiers générés par le JS -->
-                </div>
-
-                <!-- Menu Latéral (Sidebar Superposée) -->
-                <div id="exp-sidebar-overlay" class="exp-sidebar-overlay">
-                    <div class="exp-sidebar">
-                        <div class="exp-sidebar-header">
-                            <button id="btn-exp-close-menu" class="exp-icon-btn">✖</button>
-                        </div>
-                        <button class="btn-primary" style="margin: 0 15px 15px 15px; width: calc(100% - 30px); font-size: 0.8rem;">＋ Nouveau</button>
-                        
-                        <ul class="exp-menu-list">
-                            <li class="active" data-path="home"><span class="icon">📁</span> Mes fichiers</li>
-                            <li data-path="favorites"><span class="icon">⭐</span> Favoris</li>
-                            <li data-path="trash"><span class="icon">🗑️</span> Corbeille</li>
-                        </ul>
-                        
-                        <div class="exp-menu-divider"></div>
-                        <span class="exp-menu-title">Catégories</span>
-                        <ul class="exp-menu-list">
-                            <li><span class="icon">🖼️</span> Images</li>
-                            <li><span class="icon">🎵</span> Audio</li>
-                            <li><span class="icon">🎬</span> Vidéos</li>
-                            <li><span class="icon">📄</span> Documents</li>
-                        </ul>
-                    </div>
-                </div>
-                
-               <!-- Modal de prévisualisation / Actions (Caché par défaut) -->
-                <div id="exp-preview-modal" class="exp-sidebar-overlay" style="z-index: 150;">
-                    <div class="exp-preview-panel">
-                        <div class="exp-preview-header">
-                            <button id="btn-exp-close-preview" class="exp-icon-btn">←</button>
-                            <span>Aperçu</span>
-                            <button class="exp-icon-btn">⋮</button>
-                        </div>
-                        <div class="exp-preview-body">
-                            <div class="exp-preview-icon">📄</div>
-                            <div class="exp-preview-name">Fichier</div>
-                            <div class="exp-preview-meta">Détails</div>
-                            <button class="btn-primary" style="margin-top: 20px; width: 80%;">Ouvrir le fichier</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
     </main>
 
-    <!-- Bannière d'installation PWA (masquée par défaut) -->
-    <div id="pwa-install-banner" style="display: none; position: absolute; bottom: 80px; left: 15px; right: 15px; background: var(--card-bg); padding: 15px; border-radius: 12px; box-shadow: 0 -4px 20px rgba(0,0,0,0.15); z-index: 100; text-align: center; border: 2px solid var(--msq-mint);">
-        <h3 style="font-size: 1rem; margin-bottom: 5px; color: var(--text-main);">📱 Installer BOYWO</h3>
-        <p style="font-size: 0.8rem; color: var(--text-light); margin-bottom: 15px;">Ajoutez l'application à votre écran d'accueil pour une meilleure expérience.</p>
-        <div style="display: flex; gap: 10px;">
-            <button id="btn-pwa-dismiss" class="btn-cancel" style="flex: 1;">Plus tard</button>
-            <button id="btn-pwa-install" class="btn-primary" style="margin-top: 0; flex: 2;">Installer</button>
-        </div>
-    </div>
-
-    <!-- Barre de navigation en bas -->
+    <!-- Bottom navigation (desktop: keep for switching views) -->
     <nav class="bottom-nav">
         <button class="nav-btn active" data-target="accueil">
             <span class="icon">🏠</span><span>Accueil</span>
@@ -746,16 +270,9 @@
         <button class="nav-btn" data-target="media">
             <span class="icon">🎵</span><span>Médias</span>
         </button>
-        <!-- ONGLET FICHIERS -->
-        <button class="nav-btn" data-target="fichiers">
-            <span class="icon">📁</span><span>Fichiers</span>
-        </button>
-        <button class="nav-btn" data-target="themes">
-            <span class="icon">⚙️</span><span>Réglages</span>
-        </button>
     </nav>
 
-    <!-- Scripts de l'extension -->
+    <!-- Scripts -->
     <script src="audio-db.js"></script>
     <script src="js/app.js"></script>
 </body>
