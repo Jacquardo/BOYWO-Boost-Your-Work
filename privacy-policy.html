@@ -127,11 +127,6 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
 </style>
 </head>
 <body>
-<!--
-  AVANT PUBLICATION : recherchez « À COMPLÉTER » dans ce fichier.
-  Chaque repère jaune correspond à une information que le code fourni (index.html et app.js)
-  ne permet pas de confirmer. Remplacez-le par l'information vérifiée, ou supprimez la phrase.
--->
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 <header class="site-header">
@@ -173,15 +168,16 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
       <article>
         <h2 id="editeur">Éditeur et contact</h2>
         <p>BOYWO – Boost Your Work est une extension pour le navigateur Google Chrome. Cette politique décrit les données que l’extension utilise et la façon dont elle les traite.</p>
-        <p>Éditeur : <mark class="todo">À COMPLÉTER : nom ou raison sociale de l’éditeur</mark></p>
-        <p>Contact pour toute question sur vos données : <mark class="todo">À COMPLÉTER : adresse e-mail de contact</mark></p>
+        <p>Éditeur : jacquardodev</p>
+        <p>Contact pour toute question sur vos données : <a href="mailto:jacquardodev@gmail.com">jacquardodev@gmail.com</a></p>
 
         <h2 id="resume">En bref</h2>
         <div class="summary">
           <p>Vos notes, tâches, images, fichiers audio et réglages sont enregistrés dans le navigateur, sur votre appareil.</p>
-          <p>Vous vous connectez avec votre compte Google, et BOYWO propose une synchronisation avec Google Drive.</p>
+          <p>Vous pouvez vous connecter avec votre compte Google, et BOYWO propose une synchronisation avec votre Google Drive.</p>
+          <p>L’éditeur n’a accès à aucune de vos données et n’utilise aucun serveur.</p>
           <p>La météo, le fond d’écran du jour et la vérification des mises à jour font appel à des services externes, détaillés plus bas.</p>
-          <p>Les pages de ce site n’utilisent ni cookies, ni outil de mesure d’audience, ni ressource externe.</p>
+          <p>Les pages de ce site web n’utilisent ni cookies, ni outil de mesure d’audience, ni ressource externe.</p>
         </div>
 
         <h2 id="donnees">Données traitées par l’extension</h2>
@@ -204,18 +200,17 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
             </tbody>
           </table>
         </div>
-        <p><mark class="todo">À COMPLÉTER : pour Smart Copy Tracker, indiquer sur quelles pages les copies sont détectées, si l’enregistrement est désactivé par défaut après l’installation, et si le contenu est lu depuis les pages web (code du service worker et des scripts de contenu, non fournis).</mark></p>
-        <p><mark class="todo">À COMPLÉTER : pour la bulle flottante affichée sur les pages visitées, indiquer si elle lit ou transmet le contenu des pages (script de contenu, non fourni).</mark></p>
+        <p>Lorsque l’enregistrement automatique de Smart Copy Tracker est actif, BOYWO détecte les copies de texte effectuées sur toutes les pages web que vous visitez et les enregistre dans l’extension. Vous les consultez dans la page Smart Copy Tracker de l’extension. L’interrupteur de la carte Smart Copy Tracker, dans l’onglet Outils, active ou coupe l’enregistrement à tout moment. Un texte copié peut contenir une information sensible (mot de passe, coordonnées) : coupez l’enregistrement si vous ne souhaitez pas la conserver.</p>
+        <p>La bulle flottante BOYWO, affichée sur les pages visitées, n’enregistre aucune donnée issue des pages sur lesquelles elle s’affiche.</p>
 
         <h3>Position géographique</h3>
         <p>Pour afficher la météo, l’extension demande la position de votre appareil à Chrome, qui vous demande votre accord. Si vous refusez, la ville de repli de vos réglages est utilisée. Dans le code analysé, la position obtenue sert à interroger les services de météo décrits plus bas ; elle n’est pas enregistrée par l’extension. La position est demandée à chaque actualisation de la météo, toutes les 5 minutes tant que l’extension est ouverte.</p>
 
         <h2 id="google">Compte Google et synchronisation Google Drive</h2>
-        <p>BOYWO s’utilise avec une connexion à votre compte Google. L’extension lit votre nom, votre prénom, votre adresse e-mail et votre photo de profil Google pour les afficher dans l’onglet Compte, et en garde une copie locale.</p>
+        <p>BOYWO propose de se connecter avec votre compte Google. Après connexion, l’extension lit votre nom, votre prénom, votre adresse e-mail et votre photo de profil Google pour les afficher dans l’onglet Compte, et en garde une copie locale.</p>
         <p>Le bouton « Synchroniser maintenant » et l’enregistrement du surnom ou de la photo déclenchent une synchronisation avec Google Drive. Le bouton « Se déconnecter de Google » déconnecte votre compte ; l’extension précise alors que vos données ne sont pas supprimées.</p>
-        <p><mark class="todo">À COMPLÉTER : liste exacte des autorisations OAuth demandées (champs « scopes » du manifest.json et de js/google-sync.js) et leur finalité.</mark></p>
-        <p><mark class="todo">À COMPLÉTER : emplacement des données dans Drive (dossier d’application masqué ou dossier visible), liste précise des données synchronisées (notes, tâches, fichiers, images, fonds, pistes audio, réglages, historique Smart Copy), fréquence des synchronisations automatiques, et éventuel chiffrement (js/google-sync.js, non fourni).</mark></p>
-        <p><mark class="todo">À COMPLÉTER : confirmer que l’éditeur de BOYWO n’a accès à aucune de ces données et qu’aucun serveur de l’éditeur n’est utilisé (js/google-sync.js, background.js et service worker, non fournis).</mark></p>
+        <p>Les données synchronisées sont regroupées dans un seul fichier, nommé BOYWO-data.json, enregistré dans votre Google Drive. Vous pouvez le consulter ou le supprimer depuis votre compte Google.</p>
+        <p>L’éditeur de BOYWO n’a accès à aucune de ces données, et l’extension n’utilise aucun serveur de l’éditeur : vos données passent uniquement entre votre navigateur et votre compte Google.</p>
 
         <h2 id="services">Services externes contactés</h2>
         <p>D’après le code analysé, l’extension communique avec les services suivants. Comme pour tout accès à un site, ces services reçoivent aussi votre adresse IP et les informations techniques de votre navigateur.</p>
@@ -228,7 +223,6 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
               <tr><td>Picsum Photos (picsum.photos)</td><td>À l’affichage du fond d’écran quotidien</td><td>Une adresse d’image calculée à partir du jour de l’année, sans donnée personnelle. Ce fond n’est pas chargé quand un fond personnalisé est actif.</td></tr>
               <tr><td>Google Fonts (fonts.googleapis.com et fonts.gstatic.com)</td><td>À l’affichage de l’interface, qui référence la police Poppins</td><td>Aucune donnée saisie par vous</td></tr>
               <tr><td>Google (connexion et Drive)</td><td>À la connexion et à la synchronisation</td><td>Voir la section « Compte Google et synchronisation Google Drive »</td></tr>
-              <tr><td>Contrôle des mises à jour</td><td>À l’ouverture de l’extension</td><td><mark class="todo">À COMPLÉTER : adresse interrogée et données transmises (background.js, non fourni)</mark></td></tr>
             </tbody>
           </table>
         </div>
@@ -241,9 +235,9 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
           <li><strong>Stockage :</strong> enregistrer vos données et réglages dans l’extension.</li>
           <li><strong>Localisation :</strong> afficher la météo de l’endroit où vous êtes. Chrome vous demande votre accord.</li>
           <li><strong>Communication interne et lecture en arrière-plan :</strong> faire jouer la musique quand la fenêtre de l’extension est fermée.</li>
+          <li><strong>Accès aux pages web :</strong> afficher la bulle et l’horloge flottantes sur les pages visitées, et détecter les copies de texte pour Smart Copy Tracker.</li>
           <li><strong>Connexion Google :</strong> identifier votre compte et synchroniser avec Drive.</li>
         </ul>
-        <p><mark class="todo">À COMPLÉTER : reporter ici, une par une, les permissions et hôtes déclarés dans manifest.json (permissions, host_permissions, scripts de contenu, identity, oauth2) avec la finalité de chacune. Le manifeste n’a pas été fourni.</mark></p>
 
         <h2 id="conservation">Conservation et suppression</h2>
         <ul>
@@ -252,15 +246,13 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
           <li>La déconnexion de Google ne supprime pas vos données.</li>
           <li>La désinstallation de l’extension efface les données qu’elle avait enregistrées dans Chrome, selon le fonctionnement du navigateur.</li>
         </ul>
-        <p><mark class="todo">À COMPLÉTER : comment supprimer les données synchronisées dans Google Drive, et durée de conservation éventuelle de la corbeille (js/google-sync.js, non fourni). Pour Smart Copy Tracker, confirmer les options de suppression : texte par texte, doublons, et vidage complet de l’historique avec confirmation.</mark></p>
 
         <h2 id="securite">Sécurité</h2>
         <p>Les requêtes vers les services externes listés plus haut utilisent des adresses HTTPS. Vos données locales sont conservées dans le profil Chrome de votre appareil et bénéficient de la protection de votre session et de votre appareil. Gardez votre appareil et votre compte Google protégés par un mot de passe robuste.</p>
-        <p><mark class="todo">À COMPLÉTER : mesures complémentaires réellement en place (par exemple chiffrement des données synchronisées), à confirmer dans js/google-sync.js.</mark></p>
 
         <h2 id="droits">Vos droits et comment les exercer</h2>
         <p>Vous pouvez à tout moment consulter, modifier ou supprimer vos données directement dans l’extension (notes, tâches, fichiers, historique Smart Copy, surnom et photo). Selon la loi qui s’applique à vous, vous pouvez aussi demander l’accès à vos données, leur rectification, leur effacement, la limitation ou l’opposition à leur traitement, et leur portabilité, et retirer votre consentement. Le consentement à la localisation se retire dans les réglages de Chrome ; l’accès de BOYWO à votre compte Google se retire depuis les paramètres de sécurité de votre compte Google.</p>
-        <p>Pour toute demande, écrivez à : <mark class="todo">À COMPLÉTER : adresse e-mail de contact</mark></p>
+        <p>Pour toute demande, écrivez à : <a href="mailto:jacquardodev@gmail.com">jacquardodev@gmail.com</a></p>
 
         <h2 id="limitee">Données des API Google</h2>
         <p>L’utilisation et le transfert par BOYWO des informations reçues des API Google respecteront la <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">politique relative aux données utilisateur des services d’API Google</a>, y compris ses exigences d’utilisation limitée.</p>
