@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<title>BOYWO – Lecteur YouTube</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; font-family: system-ui, sans-serif; }
+  #p, iframe#p { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  #msg { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 16px;
+         text-align: center; color: #fff; font-size: 13px; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div id="p"></div>
+<div id="msg"></div>
+<noscript>JavaScript est nécessaire pour ce lecteur.</noscript>
+<script>
+/*
+ * BOYWO – page intermédiaire du lecteur YouTube (hébergée sur GitHub Pages, HTTPS).
+ * Elle est intégrée en <iframe> dans l'extension BOYWO et utilise l'API officielle « YouTube IFrame Player API ».
+ * Dialogue avec l'extension par postMessage : seules les origines de ALLOWED sont écoutées (et notre réponse
+ * n'est adressée qu'à cette origine). Aucun identifiant ni donnée personnelle n'est collecté ici.
+ */
+(function () {
+  'use strict';
+  // Origine(s) autorisées à piloter cette page : l'extension BOYWO (ID fixé par la clé du manifest.json).
+  // Pour tester une copie de l'extension avec un autre ID, ajoutez-le ici.
+  var ALLOWED = ['chrome-extension://joajfaoljmchpllcniehecddanhkolnf'];
+  var VIDEO_ID = /^[\w-]{11}$/;
+  var controls = new URLSearchParams(location.search).get('controls') === '1' ? 1 : 0;
+
+  var parentOrigin = null, player = null, apiReady = false, apiFailed = false, pending = null, ticker = null, helloTimer = null;
+  var $msg = document.getElementById('msg');
+
+  function show(text) { $msg.textContent = text; $msg.style.display = 'flex'; }
+  function post(msg) {
+    if (!parentOrigin || window.parent === window) return;
+    msg.mfyt = 1;
+    try { window.parent.postMessage(msg, parentOrigin); } catch (e) {}
+  }
+
+  if (window.parent === window) { show('Cette page est le lecteur de l’extension BOYWO. Elle s’utilise depuis l’extension.'); return; }
+
+  // 1) Poignée de main : on salue chaque origine autorisée tant qu'on n'a pas reçu de commande valide.
+  function hello() { ALLOWED.forEach(function (o) { try { window.parent.postMessage({ mfyt: 1, evt: 'hello' }, o); } catch (e) {} }); }
+  hello();
+  helloTimer = setInterval(hello, 500);
+
+  // 2) Chargement de l'API officielle (script servi par youtube.com).
+  var apiTimeout = setTimeout(function () { if (!apiReady) apiError(); }, 12000);
+  function apiError() { apiFailed = true; post({ evt: 'apierror' }); show('Impossible de charger l’API YouTube.'); }
+  window.onYouTubeIframeAPIReady = function () {
+    apiReady = true; clearTimeout(apiTimeout); $msg.style.display = 'none';
+    post({ evt: 'apiready' });
+    if (pending) { var p = pending; pending = null; load(p); }
+  };
+  var s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  s.async = true;
+  s.onerror = function () { clearTimeout(apiTimeout); apiError(); };
+  document.head.appendChild(s);
+
+  function meta() {
+    try { var d = player.getVideoData() || {}; post({ evt: 'meta', title: d.title || '', author: d.author || '', id: d.video_id || '' }); } catch (e) {}
+  }
+
+  function load(p) {
+    if (!VIDEO_ID.test(p.videoId || '')) { post({ evt: 'error', code: 2 }); return; }
+    if (apiFailed) { post({ evt: 'apierror' }); return; }
+    if (!apiReady) { pending = p; return; }
+    var start = Math.max(0, Math.floor(Number(p.start) || 0));
+    if (player && player.loadVideoById) {
+      if (p.autoplay === false) player.cueVideoById({ videoId: p.videoId, startSeconds: start });
+      else player.loadVideoById({ videoId: p.videoId, startSeconds: start });
+      return;
+    }
+    player = new YT.Player('p', {
+      videoId: p.videoId, width: '100%', height: '100%', host: 'https://www.youtube.com',
+      playerVars: {
+        autoplay: p.autoplay === false ? 0 : 1, controls: controls, fs: controls, rel: 0, playsinline: 1, modestbranding: 1,
+        iv_load_policy: 3, disablekb: controls ? 0 : 1, enablejsapi: 1, origin: location.origin, start: start
+      },
+      events: {
+        onReady: function () { post({ evt: 'ready' }); meta(); },
+        onStateChange: function (e) { post({ evt: 'state', s: e.data }); if (e.data === 1 || e.data === 5) meta(); },
+        onError: function (e) { post({ evt: 'error', code: e.data }); },
+        onAutoplayBlocked: function () { post({ evt: 'autoplayblocked' }); }
+      }
+    });
+    if (!ticker) ticker = setInterval(function () {
+      if (!player || !player.getCurrentTime) return;
+      try {
+        post({ evt: 'time', t: player.getCurrentTime() || 0, d: player.getDuration() || 0, s: player.getPlayerState(),
+               v: player.getVolume(), m: player.isMuted(), l: player.getVideoLoadedFraction() || 0 });
+      } catch (e) {}
+    }, 500);
+  }
+
+  // 3) Commandes de l'extension.
+  window.addEventListener('message', function (e) {
+    if (e.source !== window.parent || ALLOWED.indexOf(e.origin) < 0) return;
+    var d = e.data;
+    if (!d || d.mfyt !== 1 || typeof d.cmd !== 'string') return;
+    if (!parentOrigin) { parentOrigin = e.origin; clearInterval(helloTimer); }
+    try {
+      switch (d.cmd) {
+        case 'load': load({ videoId: String(d.videoId || ''), start: d.start, autoplay: d.autoplay }); break;
+        case 'play': player && player.playVideo(); break;
+        case 'pause': player && player.pauseVideo(); break;
+        case 'stop': player && player.stopVideo(); break;
+        case 'seek': player && isFinite(d.time) && player.seekTo(Number(d.time), true); break;
+        case 'volume': player && isFinite(d.value) && player.setVolume(Math.min(100, Math.max(0, Number(d.value)))); break;
+        case 'mute': player && player.mute(); break;
+        case 'unmute': player && player.unMute(); break;
+      }
+    } catch (err) {}
+  });
+})();
+</script>
+</body>
+</html>
