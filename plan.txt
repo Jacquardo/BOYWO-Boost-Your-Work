@@ -1,0 +1,44 @@
+BOYWO-Boost-Your-Work/
+├── assets/
+│   ├── icons/
+│   │   ├── android-chrome-192x192.png
+│   │   ├── android-chrome-512x512.png
+│   │   ├── apple-touch-icon.png
+│   │   ├── ico.txt
+│   │   ├── icon-128.png
+│   │   ├── icon-16.png
+│   │   ├── icon-32.png
+│   │   ├── icon-48.png
+│   │   ├── icon.txt
+│   │   └── site.webmanifest
+│   └── images/
+│       └── presentations/
+│           ├── apercu-accueil.webp
+│           ├── apercu-notes.webp
+│           ├── apercu-outils.webp
+│           ├── apercu-planning.webp
+│           ├── apercu-taches.webp
+│           ├── ecran-accueil.webp
+│           ├── ecran-fichiers.webp
+│           ├── ecran-medias.webp
+│           ├── ecran-outils.webp
+│           ├── ecran-reglages.webp
+│           ├── present.txt
+│           ├── promo-1-accueil.webp
+│           ├── promo-2-outils.webp
+│           ├── promo-3-medias.webp
+│           ├── promo-4-fichiers.webp
+│           └── promo-5-reglages.webp
+├── css/
+│   ├── style.txt
+│   └── vitrine.css
+├── player/
+│   └── player.html
+├── site/
+│   ├── gnrnog.txt
+│   ├── musicflow-player.html
+│   └── musicflow-player.js
+├── index.html
+├── presentation.html
+├── privacy-policy.html
+└── vitrine.css
