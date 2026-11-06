@@ -1,44 +1,44 @@
 BOYWO-Boost-Your-Work/
-├── assets/
-│   ├── icons/
-│   │   ├── android-chrome-192x192.png
-│   │   ├── android-chrome-512x512.png
-│   │   ├── apple-touch-icon.png
-│   │   ├── ico.txt
-│   │   ├── icon-128.png
-│   │   ├── icon-16.png
-│   │   ├── icon-32.png
-│   │   ├── icon-48.png
-│   │   ├── icon.txt
-│   │   └── site.webmanifest
-│   └── images/
-│       └── presentations/
-│           ├── apercu-accueil.webp
-│           ├── apercu-notes.webp
-│           ├── apercu-outils.webp
-│           ├── apercu-planning.webp
-│           ├── apercu-taches.webp
-│           ├── ecran-accueil.webp
-│           ├── ecran-fichiers.webp
-│           ├── ecran-medias.webp
-│           ├── ecran-outils.webp
-│           ├── ecran-reglages.webp
-│           ├── present.txt
-│           ├── promo-1-accueil.webp
-│           ├── promo-2-outils.webp
-│           ├── promo-3-medias.webp
-│           ├── promo-4-fichiers.webp
-│           └── promo-5-reglages.webp
+├── assets/                         (inchangé : icônes et images)
+│   ├── icons/ …
+│   └── images/presentations/ …
 ├── css/
-│   ├── style.txt
-│   └── vitrine.css
+│   ├── site.css                    [NOUVEAU]  style commun du site (extrait de l'accueil)
+│   ├── tools.css                   [NOUVEAU]  harmonisation des outils avec le site
+│   ├── smart-copy.css              [NOUVEAU]
+│   ├── image-editor.css            [NOUVEAU]
+│   ├── musicflow.css               [NOUVEAU]
+│   ├── vitrine.css                 [SUPPRIMER] remplacé par site.css
+│   └── style.txt                   [SUPPRIMER]
+├── js/                             [NOUVEAU DOSSIER]
+│   ├── chrome-shim.js              [NOUVEAU]  remplace les API Chrome (stockage, messages)
+│   ├── embed.js                    [NOUVEAU]  masque l'en-tête du site quand l'outil est dans le hub
+│   ├── hub.js                      [NOUVEAU]  onglets de la page Outils
+│   ├── audio-db.js                 [NOUVEAU]  bibliothèque audio locale
+│   ├── smart-copy-store.js         [NOUVEAU]
+│   ├── smart-copy-export.js        [NOUVEAU]
+│   ├── smart-copy-page.js          [NOUVEAU]
+│   ├── smart-copy-web.js           [NOUVEAU]  capture dans la page + ajout manuel
+│   ├── image-editor.js             [NOUVEAU]  copie à l'identique de l'extension
+│   └── musicflow/
+│       ├── mf-config.js            [NOUVEAU]
+│       ├── mf-store.js             [NOUVEAU]
+│       ├── mf-providers.js         [NOUVEAU]
+│       ├── mf-ytplayer.js          [NOUVEAU]
+│       ├── mf-engine.js            [NOUVEAU]
+│       └── mf-site.js              [NOUVEAU]  page MusicFlow du site
+├── outils/                         [NOUVEAU DOSSIER]
+│   ├── index.html                  hub à onglets
+│   ├── smart-copy.html
+│   ├── image-editor.html
+│   └── musicflow.html
 ├── player/
-│   └── player.html
+│   └── player.html                 [MODIFIÉ]  site ajouté aux origines autorisées (adresse inchangée)
 ├── site/
-│   ├── gnrnog.txt
-│   ├── musicflow-player.html
-│   └── musicflow-player.js
-├── index.html
-├── presentation.html
-├── privacy-policy.html
-└── vitrine.css
+│   ├── musicflow-player.html       [À GARDER pour l'instant]
+│   ├── musicflow-player.js         [À GARDER pour l'instant]
+│   └── gnrnog.txt                  [SUPPRIMER]
+├── index.html                      [MODIFIÉ]  lien « Outils en ligne » + section des trois outils
+├── presentation.html               (inchangé)
+├── privacy-policy.html             [MODIFIÉ]  section « Outils en ligne », MusicFlow ajouté
+└── vitrine.css                     [SUPPRIMER] (doublon de css/vitrine.css)
