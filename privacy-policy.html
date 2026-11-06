@@ -8,123 +8,7 @@
 <meta name="theme-color" content="#1abc9c">
 <link rel="canonical" href="https://jacquardo.github.io/BOYWO-Boost-Your-Work/privacy-policy.html">
 <link rel="icon" href="assets/icons/icon-128.png">
-<style>
-/* BOYWO – site de présentation (presentation.html, privacy-policy.html)
-   Fichier indépendant : ne touche ni css/style.css ni css/smart-copy.css de l'extension. */
-:root{
-  --ink:#10202c; --paper:#f4f7f5; --mint:#1abc9c; --teal:#0b6b5b;
-  --sand:#e3ece7; --line:#cfdad4; --white:#fff; --muted:#4a5b66;
-  --radius:20px;
-  --font:"Segoe UI Variable Display","Avenir Next","Helvetica Neue",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--font)}
-img{display:block;max-width:100%;height:auto}
-a{color:var(--teal);text-underline-offset:.18em}
-a:hover{color:var(--ink)}
-:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
-.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
-.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6rem 1rem;z-index:10}
-.skip:focus{left:1rem;top:1rem}
-
-/* En-tête */
-.site-header{padding:1.1rem 0}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:.7rem;color:var(--ink);text-decoration:none;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
-.brand img{width:38px;height:38px;border-radius:10px}
-.nav{display:flex;gap:1.4rem;flex-wrap:wrap}
-.nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.98rem;padding:.3rem 0;border-bottom:2px solid transparent}
-.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--mint)}
-
-/* Boutons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.7rem 1.4rem;border-radius:999px;font:700 1rem var(--font);text-decoration:none;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
-.btn:hover{background:var(--teal);border-color:var(--teal);color:#fff}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.badge-soon{display:inline-flex;align-items:center;min-height:48px;padding:.7rem 1.4rem;border-radius:999px;border:2px dashed var(--mint);font-weight:700;color:#fff}
-
-/* Hero */
-.hero{padding:2.5rem 0 4.5rem}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3rem;align-items:center}
-.hero h1{font-size:clamp(2.4rem,5.2vw,4rem);line-height:1.04;letter-spacing:-.035em;font-weight:800;margin:0 0 1.2rem}
-.hero p.lead{font-size:1.2rem;max-width:34rem;color:var(--muted);margin:0 0 2rem}
-.actions{display:flex;gap:.9rem;flex-wrap:wrap}
-.stage{background:var(--mint);border-radius:28px;padding:clamp(1.2rem,3vw,2.2rem);display:grid;place-items:center;min-height:320px}
-.stage img{width:auto;max-height:560px;border-radius:14px;box-shadow:0 18px 44px rgba(16,32,44,.28)}
-
-/* Sections */
-section{padding:4rem 0}
-h2{font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;letter-spacing:-.025em;font-weight:800;margin:0 0 .8rem}
-.intro{max-width:40rem;color:var(--muted);margin:0 0 2.5rem}
-
-/* Modules : reprend la barre de navigation de l'extension */
-.module{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:1rem 3rem;padding:2rem 0;border-top:2px solid var(--line)}
-.module:last-child{border-bottom:2px solid var(--line)}
-.module h3{margin:0 0 .4rem;font-size:1.35rem;letter-spacing:-.015em}
-.module .tag{margin:0;color:var(--muted);font-size:.98rem}
-.module ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 2rem}
-.module li{padding-left:1.1rem;position:relative}
-.module li::before{content:"";position:absolute;left:0;top:.7em;width:.5rem;height:.5rem;border-radius:50%;background:var(--mint)}
-.module li strong{display:block}
-.module li span{color:var(--muted);font-size:.97rem}
-
-/* Aperçu */
-.gallery-section{background:var(--sand)}
-.rail{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x proximity;padding:.5rem .2rem 1.2rem;margin:0;list-style:none}
-.rail figure{margin:0;flex:0 0 auto;scroll-snap-align:start;background:#fff;border-radius:var(--radius);padding:.7rem;box-shadow:0 6px 20px rgba(16,32,44,.1)}
-.rail img{height:clamp(260px,52vh,500px);width:auto;max-width:none;border-radius:12px}
-
-/* Installation */
-.install{background:var(--ink);color:#fff}
-.install h2{color:#fff}
-.install p{max-width:38rem;color:#d3dfd9}
-.install a:not(.btn){color:#8be3cf}
-.install .actions{margin:1.6rem 0}
-
-/* Pied de page */
-.site-footer{padding:2.5rem 0;border-top:2px solid var(--line);font-size:.95rem;color:var(--muted)}
-.site-footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.site-footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
-
-/* Politique de confidentialité */
-.doc-head{padding:2rem 0 1rem}
-.doc-head h1{font-size:clamp(2rem,4.4vw,3rem);letter-spacing:-.03em;line-height:1.1;margin:0 0 .6rem}
-.doc-head p{color:var(--muted);margin:0}
-.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;padding:2rem 0 4rem;align-items:start}
-.toc{position:sticky;top:1rem;font-size:.95rem}
-.toc ol{margin:0;padding:0;list-style:none;border-left:2px solid var(--line)}
-.toc a{display:block;padding:.35rem 0 .35rem .9rem;text-decoration:none;color:var(--ink)}
-.toc a:hover{color:var(--teal)}
-.doc article{max-width:46rem}
-.doc h2{font-size:1.5rem;margin:2.6rem 0 .7rem;padding-top:.4rem;scroll-margin-top:1rem}
-.doc h2:first-child{margin-top:0}
-.doc h3{font-size:1.1rem;margin:1.6rem 0 .3rem}
-.doc ul{padding-left:1.2rem}
-.doc li{margin:.3rem 0}
-.summary{background:var(--sand);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:0 0 1rem}
-.summary p{margin:.3rem 0}
-.table-wrap{overflow-x:auto;margin:1rem 0;border:2px solid var(--line);border-radius:14px;background:#fff}
-table{border-collapse:collapse;width:100%;min-width:560px;font-size:.96rem}
-th,td{text-align:left;vertical-align:top;padding:.7rem .9rem;border-bottom:1px solid var(--line)}
-th{background:var(--sand);font-weight:700}
-tr:last-child td{border-bottom:0}
-/* Repère visuel des informations que le code ne permet pas de confirmer */
-mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6px;font-weight:600}
-
-@media (max-width:860px){
-  .hero .wrap{grid-template-columns:1fr;gap:2rem}
-  .module{grid-template-columns:1fr}
-  .module ul{grid-template-columns:1fr}
-  .doc{grid-template-columns:1fr;gap:1rem}
-  .toc{position:static}
-  .toc ol{display:flex;flex-wrap:wrap;gap:.2rem 1rem;border-left:0}
-  .toc a{padding:.25rem 0}
-  section{padding:3rem 0}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{.site-header,.site-footer,.toc{display:none}.doc{display:block}mark.todo{background:none;color:inherit}}
-</style>
+<link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -134,6 +18,7 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
     <a class="brand" href="index.html"><img src="assets/icons/icon-128.png" width="38" height="38" alt="">BOYWO</a>
     <nav class="nav" aria-label="Navigation principale">
       <a href="index.html#fonctionnalites">Fonctionnalités</a>
+      <a href="outils/">Outils en ligne</a>
       <a href="index.html#apercu">Aperçu</a>
       <a href="index.html#installer">Installer</a>
       <a href="privacy-policy.html" aria-current="page">Confidentialité</a>
@@ -145,7 +30,7 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
   <div class="wrap">
     <div class="doc-head">
       <h1>Politique de confidentialité</h1>
-      <p>Extension Chrome BOYWO – Boost Your Work. Dernière mise à jour : 22 octobre 2026.</p>
+      <p>Extension Chrome BOYWO – Boost Your Work et outils en ligne de ce site. Dernière mise à jour : 5 novembre 2026.</p>
     </div>
 
     <div class="doc">
@@ -156,6 +41,7 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
           <li><a href="#donnees">Données traitées</a></li>
           <li><a href="#google">Compte Google et Drive</a></li>
           <li><a href="#services">Services externes</a></li>
+          <li><a href="#outils-site">Outils en ligne du site</a></li>
           <li><a href="#autorisations">Autorisations</a></li>
           <li><a href="#conservation">Conservation et suppression</a></li>
           <li><a href="#securite">Sécurité</a></li>
@@ -177,7 +63,8 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
           <p>Vous pouvez vous connecter avec votre compte Google, et BOYWO propose une synchronisation avec votre Google Drive.</p>
           <p>L’éditeur n’a accès à aucune de vos données et n’utilise aucun serveur.</p>
           <p>La météo, le fond d’écran du jour et la vérification des mises à jour font appel à des services externes, détaillés plus bas.</p>
-          <p>Les pages de ce site web n’utilisent ni cookies, ni outil de mesure d’audience, ni ressource externe.</p>
+          <p>Les pages de présentation de ce site web n’utilisent ni cookies, ni outil de mesure d’audience, ni ressource externe.</p>
+          <p>Les outils en ligne du site (Smart Copy Tracker, éditeur d’images, MusicFlow) fonctionnent dans votre navigateur, sans compte. MusicFlow contacte des services de musique et de vidéo, détaillés plus bas.</p>
         </div>
 
         <h2 id="donnees">Données traitées par l’extension</h2>
@@ -197,6 +84,7 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
               <tr><td>Ville par défaut</td><td>Les coordonnées de la ville de repli que vous choisissez dans les réglages</td><td>Afficher la météo quand la localisation est refusée</td></tr>
               <tr><td>Profil</td><td>Surnom, photo de profil (réduite à 256 pixels), copie locale du profil Google (nom, prénom, adresse e-mail, photo), date de la dernière synchronisation et état d’une éventuelle erreur d’authentification</td><td>Afficher votre compte et l’état de la synchronisation</td></tr>
               <tr><td>Smart Copy Tracker</td><td>Les textes copiés, lorsque vous activez l’enregistrement automatique avec l’interrupteur de la carte Smart Copy Tracker</td><td>Constituer l’historique des textes copiés</td></tr>
+              <tr><td>MusicFlow</td><td>Vos favoris et vos playlists (base de données du navigateur propre à MusicFlow), les titres Jamendo que vous choisissez de télécharger (ajoutés à vos pistes audio), vos réglages du mini-lecteur et le titre en cours de lecture</td><td>Faire fonctionner MusicFlow et son mini-lecteur flottant</td></tr>
             </tbody>
           </table>
         </div>
@@ -222,12 +110,31 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
               <tr><td>BigDataCloud (api.bigdatacloud.net)</td><td>Avec chaque requête météo</td><td>Latitude et longitude, pour obtenir le nom de la ville, en français</td></tr>
               <tr><td>Picsum Photos (picsum.photos)</td><td>À l’affichage du fond d’écran quotidien</td><td>Une adresse d’image calculée à partir du jour de l’année, sans donnée personnelle. Ce fond n’est pas chargé quand un fond personnalisé est actif.</td></tr>
               <tr><td>Google Fonts (fonts.googleapis.com et fonts.gstatic.com)</td><td>À l’affichage de l’interface, qui référence la police Poppins</td><td>Aucune donnée saisie par vous</td></tr>
+              <tr><td>Jamendo (api.jamendo.com, *.jamendo.com)</td><td>Quand vous cherchez ou écoutez dans MusicFlow</td><td>Votre recherche, pour obtenir les titres ; la musique est ensuite lue depuis les serveurs de Jamendo</td></tr>
+              <tr><td>Audius (api.audius.co)</td><td>Quand vous cherchez ou écoutez dans MusicFlow</td><td>Votre recherche, pour obtenir les titres ; la musique est ensuite lue depuis les serveurs d’Audius</td></tr>
+              <tr><td>Radio Browser (*.api.radio-browser.info) et serveurs de diffusion des radios</td><td>Quand vous ouvrez les radios de MusicFlow, puis quand vous écoutez une station</td><td>Le pays ou le nom de station recherché ; le flux est lu depuis le serveur de la station choisie</td></tr>
+              <tr><td>YouTube (Google) : API de recherche (googleapis.com), miniatures (i.ytimg.com) et lecteur officiel</td><td>Quand une recherche MusicFlow inclut YouTube, et quand vous lancez une vidéo</td><td>Votre recherche ; la vidéo est lue par le lecteur officiel de YouTube, chargé depuis une page hébergée par GitHub Pages (jacquardo.github.io)</td></tr>
               <tr><td>Google (connexion et Drive)</td><td>À la connexion et à la synchronisation</td><td>Voir la section « Compte Google et synchronisation Google Drive »</td></tr>
             </tbody>
           </table>
         </div>
         <p>Ces services appliquent leurs propres politiques de confidentialité. L’extension n’inclut, dans les fichiers analysés, aucun outil de mesure d’audience ni de publicité.</p>
         <p>Le lien « Version Mobile » de l’onglet À propos ouvre un site distinct (jacquardo.github.io/msq-assistant), qui n’est pas couvert par cette politique.</p>
+
+        <h2 id="outils-site">Outils en ligne du site</h2>
+        <p>La page « Outils en ligne » de ce site propose trois outils qui fonctionnent dans votre navigateur et sans compte : Smart Copy Tracker, l’éditeur d’images et MusicFlow. Ils n’utilisent aucun serveur de l’éditeur, qui n’a accès à aucune de vos données.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Outil</th><th>Données enregistrées dans votre navigateur</th><th>Services contactés</th></tr></thead>
+            <tbody>
+              <tr><td>Smart Copy Tracker</td><td>Les textes que vous copiez dans la page ou que vous ajoutez à la main, et l’état de l’interrupteur d’enregistrement</td><td>Aucun</td></tr>
+              <tr><td>Éditeur d’images</td><td>Les images que vous ouvrez sont traitées sur votre appareil et ne sont pas envoyées. <mark class="todo">À confirmer avec le code de l’éditeur : ce qu’il conserve dans le navigateur (projet enregistré)</mark></td><td>Aucun</td></tr>
+              <tr><td>MusicFlow</td><td>Vos favoris, vos playlists et les fichiers audio que vous importez ; le cache des recherches, effacé à la fermeture de l’onglet</td><td>Jamendo, Audius, Radio Browser et les serveurs des radios, YouTube (voir « Services externes contactés »)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ces données sont stockées dans la base de données de votre navigateur, pour ce site uniquement. Elles sont distinctes de celles de l’extension et ne sont pas partagées avec elle. Vous pouvez les effacer à tout moment depuis les réglages de votre navigateur (données du site jacquardo.github.io).</p>
+        <p>Le lecteur YouTube n’est chargé que lorsque vous lancez une vidéo. Il est alors fourni par YouTube (Google), qui peut utiliser des cookies et reçoit votre adresse IP selon sa propre politique de confidentialité. Les pages d’outils n’utilisent par ailleurs ni cookies, ni outil de mesure d’audience, ni police ou image hébergée ailleurs.</p>
 
         <h2 id="autorisations">Autorisations de l’extension</h2>
         <p>Les fonctions de l’extension qui s’appuient sur une autorisation du navigateur sont les suivantes.</p>
@@ -269,6 +176,7 @@ mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6p
     <span>© 2026 BOYWO – Boost Your Work</span>
     <nav aria-label="Pied de page">
       <a href="index.html">Présentation</a>
+      <a href="outils/">Outils en ligne</a>
       <a href="privacy-policy.html">Politique de confidentialité</a>
     </nav>
   </div>
