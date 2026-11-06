@@ -27,8 +27,9 @@
 (function () {
   'use strict';
   // Origine(s) autorisées à piloter cette page : l'extension BOYWO (ID fixé par la clé du manifest.json).
-  // Pour tester une copie de l'extension avec un autre ID, ajoutez-le ici.
-  var ALLOWED = ['chrome-extension://joajfaoljmchpllcniehecddanhkolnf'];
+  // + les pages du site (outils en ligne, MusicFlow), qui ont la même origine que cette page. Pour tester une copie de l'extension
+  // avec un autre ID, ajoutez-le ici.
+  var ALLOWED = ['chrome-extension://joajfaoljmchpllcniehecddanhkolnf', 'https://jacquardo.github.io'];
   var VIDEO_ID = /^[\w-]{11}$/;
   var controls = new URLSearchParams(location.search).get('controls') === '1' ? 1 : 0;
 
