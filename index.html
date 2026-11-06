@@ -3,469 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BOYWO – Boost Your Work : tâches, notes, planning, médias et fichiers dans Chrome</title>
-<meta name="description" content="BOYWO est une extension Chrome qui réunit tâches, notes, planning, lecteur audio, explorateur de fichiers et outils de productivité, avec synchronisation Google Drive.">
+<title>Outils en ligne – BOYWO</title>
+<meta name="description" content="Smart Copy Tracker, éditeur d’images et MusicFlow réunis au même endroit, directement dans votre navigateur et sans compte.">
 <meta name="theme-color" content="#1abc9c">
-<link rel="canonical" href="https://jacquardo.github.io/BOYWO-Boost-Your-Work/">
-<meta property="og:url" content="https://jacquardo.github.io/BOYWO-Boost-Your-Work/">
-<link rel="icon" href="assets/icons/icon-128.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BOYWO – Boost Your Work">
-<meta property="og:description" content="Tâches, notes, planning, médias et fichiers réunis dans une extension Chrome.">
-<meta property="og:image" content="https://jacquardo.github.io/BOYWO-Boost-Your-Work/assets/images/presentations/promo-1-accueil.webp">
-<style>
-/* BOYWO – site de présentation (presentation.html, privacy-policy.html)
-   Fichier indépendant : ne touche ni css/style.css ni css/smart-copy.css de l'extension. */
-:root{
-  --ink:#10202c; --paper:#f4f7f5; --mint:#1abc9c; --teal:#0b6b5b;
-  --sand:#e3ece7; --line:#cfdad4; --white:#fff; --muted:#4a5b66;
-  --radius:20px;
-  --font:"Segoe UI Variable Display","Avenir Next","Helvetica Neue",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.65 var(--font)}
-img{display:block;max-width:100%;height:auto}
-a{color:var(--teal);text-underline-offset:.18em}
-a:hover{color:var(--ink)}
-:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
-.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
-.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:.6rem 1rem;z-index:10}
-.skip:focus{left:1rem;top:1rem}
-
-/* En-tête */
-.site-header{padding:1.1rem 0}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:.7rem;color:var(--ink);text-decoration:none;font-weight:800;font-size:1.2rem;letter-spacing:-.01em}
-.brand img{width:38px;height:38px;border-radius:10px}
-.nav{display:flex;gap:1.4rem;flex-wrap:wrap}
-.nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.98rem;padding:.3rem 0;border-bottom:2px solid transparent}
-.nav a:hover,.nav a[aria-current="page"]{border-bottom-color:var(--mint)}
-
-/* Boutons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.7rem 1.4rem;border-radius:999px;font:700 1rem var(--font);text-decoration:none;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
-.btn:hover{background:var(--teal);border-color:var(--teal);color:#fff}
-.btn.ghost{background:transparent;color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.badge-soon{display:inline-flex;align-items:center;min-height:48px;padding:.7rem 1.4rem;border-radius:999px;border:2px dashed var(--mint);font-weight:700;color:#fff}
-
-/* Hero */
-.hero{padding:2.5rem 0 4.5rem}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3rem;align-items:center}
-.hero h1{font-size:clamp(2.4rem,5.2vw,4rem);line-height:1.04;letter-spacing:-.035em;font-weight:800;margin:0 0 1.2rem}
-.hero p.lead{font-size:1.2rem;max-width:34rem;color:var(--muted);margin:0 0 2rem}
-.actions{display:flex;gap:.9rem;flex-wrap:wrap}
-.stage{background:var(--mint);border-radius:28px;padding:clamp(1.2rem,3vw,2.2rem);display:grid;place-items:center;min-height:320px}
-.stage img{width:auto;max-height:560px;border-radius:14px;box-shadow:0 18px 44px rgba(16,32,44,.28)}
-
-/* Sections */
-section{padding:4rem 0}
-h2{font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;letter-spacing:-.025em;font-weight:800;margin:0 0 .8rem}
-.intro{max-width:40rem;color:var(--muted);margin:0 0 2.5rem}
-
-/* Modules : reprend la barre de navigation de l'extension */
-.module{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:1rem 3rem;padding:2rem 0;border-top:2px solid var(--line)}
-.module:last-child{border-bottom:2px solid var(--line)}
-.module h3{margin:0 0 .4rem;font-size:1.35rem;letter-spacing:-.015em}
-.module .tag{margin:0;color:var(--muted);font-size:.98rem}
-.module ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 2rem}
-.module li{padding-left:1.1rem;position:relative}
-.module li::before{content:"";position:absolute;left:0;top:.7em;width:.5rem;height:.5rem;border-radius:50%;background:var(--mint)}
-.module li strong{display:block}
-.module li span{color:var(--muted);font-size:.97rem}
-
-/* Aperçu */
-.gallery-section{background:var(--sand)}
-.rail{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x proximity;padding:.5rem .2rem 1.2rem;margin:0;list-style:none}
-.rail figure{margin:0;flex:0 0 auto;scroll-snap-align:start;background:#fff;border-radius:var(--radius);padding:.7rem;box-shadow:0 6px 20px rgba(16,32,44,.1)}
-.rail img{height:clamp(260px,52vh,500px);width:auto;max-width:none;border-radius:12px}
-
-/* Installation */
-.install{background:var(--ink);color:#fff}
-.install h2{color:#fff}
-.install p{max-width:38rem;color:#d3dfd9}
-.install a:not(.btn){color:#8be3cf}
-.install .actions{margin:1.6rem 0}
-
-/* Pied de page */
-.site-footer{padding:2.5rem 0;border-top:2px solid var(--line);font-size:.95rem;color:var(--muted)}
-.site-footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.site-footer nav{display:flex;gap:1.4rem;flex-wrap:wrap}
-
-/* Politique de confidentialité */
-.doc-head{padding:2rem 0 1rem}
-.doc-head h1{font-size:clamp(2rem,4.4vw,3rem);letter-spacing:-.03em;line-height:1.1;margin:0 0 .6rem}
-.doc-head p{color:var(--muted);margin:0}
-.doc{display:grid;grid-template-columns:230px minmax(0,1fr);gap:3rem;padding:2rem 0 4rem;align-items:start}
-.toc{position:sticky;top:1rem;font-size:.95rem}
-.toc ol{margin:0;padding:0;list-style:none;border-left:2px solid var(--line)}
-.toc a{display:block;padding:.35rem 0 .35rem .9rem;text-decoration:none;color:var(--ink)}
-.toc a:hover{color:var(--teal)}
-.doc article{max-width:46rem}
-.doc h2{font-size:1.5rem;margin:2.6rem 0 .7rem;padding-top:.4rem;scroll-margin-top:1rem}
-.doc h2:first-child{margin-top:0}
-.doc h3{font-size:1.1rem;margin:1.6rem 0 .3rem}
-.doc ul{padding-left:1.2rem}
-.doc li{margin:.3rem 0}
-.summary{background:var(--sand);border-radius:var(--radius);padding:1.2rem 1.5rem;margin:0 0 1rem}
-.summary p{margin:.3rem 0}
-.table-wrap{overflow-x:auto;margin:1rem 0;border:2px solid var(--line);border-radius:14px;background:#fff}
-table{border-collapse:collapse;width:100%;min-width:560px;font-size:.96rem}
-th,td{text-align:left;vertical-align:top;padding:.7rem .9rem;border-bottom:1px solid var(--line)}
-th{background:var(--sand);font-weight:700}
-tr:last-child td{border-bottom:0}
-/* Repère visuel des informations que le code ne permet pas de confirmer */
-mark.todo{background:#ffe58a;color:#3a2c00;padding:.1rem .35rem;border-radius:6px;font-weight:600}
-
-@media (max-width:860px){
-  .hero .wrap{grid-template-columns:1fr;gap:2rem}
-  .module{grid-template-columns:1fr}
-  .module ul{grid-template-columns:1fr}
-  .doc{grid-template-columns:1fr;gap:1rem}
-  .toc{position:static}
-  .toc ol{display:flex;flex-wrap:wrap;gap:.2rem 1rem;border-left:0}
-  .toc a{padding:.25rem 0}
-  section{padding:3rem 0}
-}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media print{.site-header,.site-footer,.toc{display:none}.doc{display:block}mark.todo{background:none;color:inherit}}
-
-/* Atouts et captures commentées */
-.benefits{padding:1rem 0 2rem}
-.benefits .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}
-.benefit{border-top:4px solid var(--mint);padding-top:1rem}
-.benefit h3{margin:0 0 .4rem;font-size:1.25rem;letter-spacing:-.015em}
-.benefit p{margin:0;color:var(--muted)}
-.showcase{padding-top:2rem}
-.show{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center;padding:2.2rem 0}
-.show .shot{background:var(--sand);border-radius:28px;padding:clamp(1.2rem,3vw,2rem);display:grid;place-items:center}
-.show .shot img{width:auto;max-height:560px;border-radius:14px;box-shadow:0 14px 36px rgba(16,32,44,.22)}
-.show h3{font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.2;letter-spacing:-.02em;margin:0 0 .7rem}
-.show p{margin:0 0 1rem;color:var(--muted)}
-.show ul{margin:0;padding:0;list-style:none}
-.show li{padding-left:1.1rem;position:relative;margin:.4rem 0}
-.show li::before{content:"";position:absolute;left:0;top:.7em;width:.5rem;height:.5rem;border-radius:50%;background:var(--mint)}
-.show.flip .shot{order:2}
-.cta-band{margin-top:1.5rem;display:flex;gap:.9rem;flex-wrap:wrap}
-@media (max-width:860px){
-  .benefits .wrap{grid-template-columns:1fr;gap:1.4rem}
-  .show{grid-template-columns:1fr;gap:1.4rem}
-  .show.flip .shot{order:0}
-}
-
-/* Bouton Chrome Web Store */
-.install .btn-store{background:var(--mint);border-color:var(--mint);color:var(--ink)}
-.install .btn-store:hover{background:#fff;border-color:#fff;color:var(--ink)}
-
-/* Images cliquables (agrandissement) */
-.zoomable{position:relative;cursor:zoom-in}
-.zoomable img{transition:transform .3s ease,filter .3s ease}
-.zoomable::after{content:"";position:absolute;right:14px;bottom:14px;width:42px;height:42px;border-radius:50%;background:rgba(16,32,44,.82) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.3-4.3M11 8v6M8 11h6'/%3E%3C/svg%3E") center/22px no-repeat;opacity:0;transform:translateY(6px);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
-.zoomable:focus-visible::after{opacity:1;transform:none}
-.rail figure.zoomable{transition:transform .25s ease,box-shadow .25s ease}
-@media (hover:hover){
-  .zoomable:hover img{transform:scale(1.025);filter:brightness(1.04)}
-  .zoomable:hover::after{opacity:1;transform:none}
-  .rail figure.zoomable:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(16,32,44,.2)}
-}
-@media (hover:none){.zoomable::after{opacity:.85;transform:none;width:36px;height:36px;background-size:18px}}
-
-/* Lightbox */
-.lightbox{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;padding:max(1rem,env(safe-area-inset-top)) 1rem max(1rem,env(safe-area-inset-bottom));background:rgba(6,14,22,.88);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .2s ease}
-.lightbox[hidden]{display:none}
-.lightbox.open{opacity:1}
-.lightbox img{max-width:min(94vw,1100px);max-height:80vh;max-height:80dvh;width:auto;height:auto;object-fit:contain;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);background:#fff;transform:scale(.96);transition:transform .2s ease}
-.lightbox.open img{transform:none}
-.lb-cap{margin:0;color:#dbe6e0;font-size:.95rem;line-height:1.4;text-align:center;max-width:42rem}
-.lb-close{position:absolute;top:max(.8rem,env(safe-area-inset-top));right:max(.8rem,env(safe-area-inset-right));width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.7);background:rgba(16,32,44,.7);color:#fff;font:400 30px/1 var(--font);cursor:pointer;display:grid;place-items:center;padding:0}
-.lb-close:hover{background:var(--mint);border-color:var(--mint);color:var(--ink)}
-.lb-close:focus-visible{outline:3px solid #fff;outline-offset:3px}
-html.lb-lock{overflow:hidden}
-@media (prefers-reduced-motion:reduce){.zoomable img,.zoomable::after,.rail figure.zoomable,.lightbox,.lightbox img{transition:none}}
-</style>
+<link rel="canonical" href="https://jacquardo.github.io/BOYWO-Boost-Your-Work/outils/">
+<link rel="icon" href="../assets/icons/icon-128.png">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/tools.css">
 </head>
-<body>
+<body class="hub-body" id="hub-body">
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/icons/icon-128.png" width="38" height="38" alt="">BOYWO</a>
+    <a class="brand" href="../index.html"><img src="../assets/icons/icon-128.png" width="38" height="38" alt="">BOYWO</a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#captures">En images</a>
-      <a href="#fonctionnalites">Fonctionnalités</a>
-      <a href="#apercu">Aperçu</a>
-      <a href="#installer">Installer</a>
-      <a href="privacy-policy.html">Confidentialité</a>
+      <a href="../index.html#fonctionnalites">Fonctionnalités</a>
+      <a href="index.html" aria-current="page">Outils en ligne</a>
+      <a href="../index.html#installer">Installer</a>
+      <a href="../privacy-policy.html">Confidentialité</a>
     </nav>
   </div>
 </header>
 
-<main id="contenu">
-  <section class="hero" aria-labelledby="titre-hero">
+<div class="hub-tabs">
+  <div class="wrap" role="tablist" aria-label="Outils BOYWO">
+    <button type="button" class="hub-tab" role="tab" id="tab-home" data-tool="" aria-controls="hub-home" aria-selected="true">Tous les outils</button>
+    <button type="button" class="hub-tab" role="tab" id="tab-smart-copy" data-tool="smart-copy" aria-controls="panel-smart-copy" aria-selected="false">Smart Copy Tracker</button>
+    <button type="button" class="hub-tab" role="tab" id="tab-image-editor" data-tool="image-editor" aria-controls="panel-image-editor" aria-selected="false">Éditeur d’images</button>
+    <button type="button" class="hub-tab" role="tab" id="tab-musicflow" data-tool="musicflow" aria-controls="panel-musicflow" aria-selected="false">MusicFlow</button>
+  </div>
+</div>
+
+<main class="hub-main" id="contenu">
+  <div class="hub-home" id="hub-home" role="tabpanel" aria-labelledby="tab-home">
     <div class="wrap">
-      <div>
-        <h1 id="titre-hero">Boost Your Work, dans votre navigateur</h1>
-        <p class="lead">BOYWO réunit vos tâches, vos notes, votre planning, votre musique et vos fichiers dans une seule extension Chrome, et les synchronise avec votre compte Google.</p>
-        <div class="actions">
-          <a class="btn" href="https://chromewebstore.google.com/detail/boywo-boost-your-work/joajfaoljmchpllcniehecddanhkolnf?pli=1" target="_blank" rel="noopener">Installer BOYWO</a>
-          <a class="btn ghost" href="privacy-policy.html">Lire la politique de confidentialité</a>
-        </div>
+      <div class="hub-intro">
+        <h1>Les outils BOYWO, en ligne</h1>
+        <p>Trois outils de l’extension, utilisables directement ici, sans installation ni compte. Vos données restent dans votre navigateur.</p>
       </div>
-      <div class="stage zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : BOYWO, votre espace de travail au quotidien : heure, tâches et notes réunies dans une seule extension Chrome">
-        <img src="assets/images/presentations/promo-1-accueil.webp" width="1000" height="1400" alt="BOYWO, votre espace de travail au quotidien : heure, tâches et notes réunies dans une seule extension Chrome">
+      <div class="hub-cards">
+        <a class="hub-card" href="#smart-copy" data-tool="smart-copy">
+          <h2>Smart Copy Tracker</h2>
+          <p>L’historique de vos textes copiés : recherche, détection des doublons, modification et export en TXT, Excel ou PDF.</p>
+          <span class="tag">Ouvrir l’outil →</span>
+        </a>
+        <a class="hub-card" href="#image-editor" data-tool="image-editor">
+          <h2>Éditeur d’images</h2>
+          <p>Annotez, recadrez, réglez les couleurs et exportez vos images. Elles ne quittent pas votre appareil.</p>
+          <span class="tag">Ouvrir l’outil →</span>
+        </a>
+        <a class="hub-card" href="#musicflow" data-tool="musicflow">
+          <h2>MusicFlow</h2>
+          <p>Musique libre (Jamendo, Audius), radios en direct de plusieurs pays et vidéos YouTube officielles, dans un seul lecteur.</p>
+          <span class="tag">Ouvrir l’outil →</span>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="benefits" aria-label="Les atouts de BOYWO">
-    <div class="wrap">
-      <div class="benefit"><h3>Tout au même endroit</h3><p>Tâches, notes, planning, musique et fichiers dans un seul panneau, à un clic dans la barre d’outils de Chrome.</p></div>
-      <div class="benefit"><h3>Pour gagner du temps</h3><p>Un planning avec compte à rebours, un convertisseur de texte, un historique de copies : moins d’allers-retours entre les onglets.</p></div>
-      <div class="benefit"><h3>Vos données vous appartiennent</h3><p>BOYWO n’utilise aucun serveur de l’éditeur, qui n’a accès à aucune de vos données. <a href="privacy-policy.html">Lire la politique de confidentialité</a>.</p></div>
-    </div>
-  </section>
-
-  <section class="showcase" id="captures" aria-labelledby="titre-captures">
-    <div class="wrap">
-      <h2 id="titre-captures">BOYWO en images</h2>
-      <p class="intro">Voici l’extension telle que vous la verrez, écran après écran.</p>
-      <article class="show">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Écran d’accueil de BOYWO : l’heure, la date, la météo, les tâches, les notes et la barre de navigation"><img src="assets/images/presentations/ecran-accueil.webp" width="452" height="690" alt="Écran d’accueil de BOYWO : l’heure, la date, la météo, les tâches, les notes et la barre de navigation" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Votre journée, dès l’ouverture</h3>
-          <p>Un clic sur l’icône BOYWO dans Chrome, et l’essentiel est devant vous.</p>
-          <ul>
-            <li><strong>L’heure, la date et la météo</strong> de votre position, dans l’en-tête et sur l’horloge.</li>
-            <li><strong>Mes Tâches</strong> : ajoutez une tâche en un clic, suivez-la et terminez-la.</li>
-            <li><strong>Mes Notes</strong> : notez une idée ou une information avant de l’oublier.</li>
-            <li><strong>Une barre de navigation</strong> en bas : Accueil, Outils, Médias, Fichiers et Compte.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show flip">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Onglet Outils de BOYWO : convertisseur de texte, Smart Copy Tracker avec ses compteurs, et Image Optimizer"><img src="assets/images/presentations/ecran-outils.webp" width="454" height="687" alt="Onglet Outils de BOYWO : convertisseur de texte, Smart Copy Tracker avec ses compteurs, et Image Optimizer" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Des outils prêts à l’emploi</h3>
-          <p>Les petits utilitaires qu’on cherche d’habitude sur dix sites différents.</p>
-          <ul>
-            <li><strong>Smart Copy Tracker</strong> : l’historique de vos textes copiés, avec le nombre de textes enregistrés, en majuscules, en minuscules et en double. Un interrupteur vous laisse activer ou couper l’enregistrement.</li>
-            <li><strong>Convertisseur de texte</strong> : passez un texte en majuscules ou en minuscules.</li>
-            <li><strong>Horloge flottante</strong> : une horloge affichée par-dessus vos pages.</li>
-            <li><strong>Image Optimizer</strong> : redimensionnez, recadrez et nettoyez vos images.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Onglet Médias de BOYWO : zone de dépôt de fichiers audio et lecteur BOYWO Player"><img src="assets/images/presentations/ecran-medias.webp" width="452" height="686" alt="Onglet Médias de BOYWO : zone de dépôt de fichiers audio et lecteur BOYWO Player" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Votre musique, sans quitter votre travail</h3>
-          <p>BOYWO Player lit vos propres fichiers audio.</p>
-          <ul>
-            <li><strong>Glisser-déposer</strong> vos fichiers audio, ou utilisez « Ajouter des fichiers » et « Ajouter un dossier ».</li>
-            <li><strong>Un lecteur complet</strong> : lecture aléatoire, piste précédente et suivante, répétition et favoris.</li>
-            <li><strong>Égaliseur et vitesse de lecture</strong> réglables, et lecture qui continue en arrière-plan.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show flip">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Explorateur de fichiers de BOYWO : dossiers Notes, Tâches, Médias, Archives et Import"><img src="assets/images/presentations/ecran-fichiers.webp" width="454" height="688" alt="Explorateur de fichiers de BOYWO : dossiers Notes, Tâches, Médias, Archives et Import" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Tout est rangé au même endroit</h3>
-          <p>Un explorateur pour retrouver ce que vous avez créé ou importé.</p>
-          <ul>
-            <li><strong>Des dossiers clairs</strong> : Notes, Tâches, Médias, Archives et Import.</li>
-            <li><strong>Une recherche</strong> pour retrouver un élément rapidement.</li>
-            <li><strong>Vos propres dossiers</strong>, une corbeille pour restaurer ce que vous avez supprimé, et des favoris.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Réglages de BOYWO : Thèmes, Accessibilité, Notifications et À propos"><img src="assets/images/presentations/ecran-reglages.webp" width="450" height="456" alt="Réglages de BOYWO : Thèmes, Accessibilité, Notifications et À propos" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Réglé à votre façon</h3>
-          <p>Le profil et les réglages vous laissent adapter BOYWO à vos habitudes.</p>
-          <ul>
-            <li><strong>Thèmes</strong> : couleurs, police et taille du texte.</li>
-            <li><strong>Accessibilité</strong> : notifications et localisation.</li>
-            <li><strong>Notifications</strong> : à activer ou désactiver.</li>
-            <li><strong>Profil</strong> : surnom, photo et connexion à votre compte Google, avec synchronisation sur demande vers Google Drive.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="fonctionnalites" aria-labelledby="titre-fonctions">
-    <div class="wrap">
-      <h2 id="titre-fonctions">Toutes les fonctionnalités</h2>
-      <p class="intro">L’extension s’organise comme sa barre de navigation : Accueil, Outils, Médias, Fichiers et Compte.</p>
-
-      <div class="module">
-        <div>
-          <h3>Accueil</h3>
-          <p class="tag">Votre journée d’un coup d’œil.</p>
-        </div>
-        <ul>
-          <li><strong>Tâches</strong><span>Titre, description, rappel, épinglage, report d’une tâche en retard et statut.</span></li>
-          <li><strong>Notes</strong><span>Notes colorées avec pièce jointe, retrouvables dans la corbeille après suppression.</span></li>
-          <li><strong>Planning</strong><span>Début et fin de journée, pause déjeuner et petite pause, avec le compte à rebours de la phase en cours.</span></li>
-          <li><strong>Heure et météo</strong><span>Horloge, date et météo locale (température, humidité, vent, lever et coucher du soleil).</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Outils</h3>
-          <p class="tag">Les petits utilitaires du quotidien.</p>
-        </div>
-        <ul>
-          <li><strong>Horloge flottante</strong><span>Une horloge affichée par-dessus vos pages, avec choix du thème, de la police, du fuseau horaire et de la taille.</span></li>
-          <li><strong>Convertisseur de texte</strong><span>Passez un texte en minuscules ou en majuscules, avec compteur de mots et bouton Copier.</span></li>
-          <li><strong>Smart Copy Tracker</strong><span>Un historique des textes copiés, avec recherche, détection des doublons et export en XLS, PDF ou TXT. L’enregistrement s’active et se coupe à tout moment.</span></li>
-          <li><strong>Image Optimizer</strong><span>Supprimez les métadonnées d’une image, redimensionnez-la, recadrez-la pour les réseaux sociaux et générez des icônes en 16, 32, 48 et 128 pixels.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Médias</h3>
-          <p class="tag">Le lecteur audio BOYWO Player.</p>
-        </div>
-        <ul>
-          <li><strong>Playlist</strong><span>Importez des fichiers ou un dossier audio (MP3, OGG, WAV) par glisser-déposer.</span></li>
-          <li><strong>Égaliseur intégré</strong><span>Basses, médiums et aigus réglables, avec des préréglages comme Bass Boost ou Classique.</span></li>
-          <li><strong>Lecture en arrière-plan</strong><span>La musique continue quand vous fermez la fenêtre de l’extension.</span></li>
-          <li><strong>Favoris, vitesse et mini-lecteur</strong><span>Marquez vos pistes préférées, changez la vitesse de lecture et réduisez le lecteur.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Fichiers</h3>
-          <p class="tag">Un explorateur pour tout ranger.</p>
-        </div>
-        <ul>
-          <li><strong>Dossiers personnalisés</strong><span>Classez notes, tâches, images et pistes audio dans vos propres dossiers.</span></li>
-          <li><strong>Recherche et sélection multiple</strong><span>Retrouvez un élément dans tout l’espace, puis déplacez ou supprimez plusieurs éléments à la fois.</span></li>
-          <li><strong>Favoris et corbeille</strong><span>Restaurez un élément supprimé ou supprimez-le définitivement.</span></li>
-          <li><strong>Import de fichiers</strong><span>Ajoutez vos propres fichiers à l’explorateur.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Apparence et réglages</h3>
-          <p class="tag">BOYWO prend vos couleurs.</p>
-        </div>
-        <ul>
-          <li><strong>Thèmes</strong><span>Couleurs de fond, dégradés de 2 à 4 couleurs, et barre de navigation en style dégradé, plein, verre ou contour.</span></li>
-          <li><strong>Texte</strong><span>Choix de la police et de la taille du texte.</span></li>
-          <li><strong>Fond d’écran</strong><span>Un fond qui change chaque jour, ou une de vos images en fond personnalisé.</span></li>
-          <li><strong>Bulle flottante et ville par défaut</strong><span>Une bulle BOYWO sur les pages visitées pour ouvrir l’application, et une ville de repli pour la météo si la localisation est refusée.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Compte</h3>
-          <p class="tag">Votre espace sur tous vos appareils.</p>
-        </div>
-        <ul>
-          <li><strong>Connexion Google</strong><span>Connectez-vous avec votre compte Google et choisissez un surnom et une photo.</span></li>
-          <li><strong>Synchronisation Google Drive</strong><span>Lancez une synchronisation à la demande et consultez la date de la dernière.</span></li>
-          <li><strong>Déconnexion</strong><span>Déconnectez-vous de Google sans supprimer vos données.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="apercu" class="gallery-section" aria-labelledby="titre-apercu">
-    <div class="wrap">
-      <h2 id="titre-apercu">Les visuels de BOYWO</h2>
-      <p class="intro">Faites défiler pour découvrir BOYWO en quelques écrans.</p>
-      <ul class="rail" tabindex="0" aria-label="Visuels de présentation de BOYWO, défilement horizontal">
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Votre espace de travail au quotidien : heure, date, météo, tâches et notes en un clic"><img src="assets/images/presentations/promo-1-accueil.webp" width="1000" height="1400" alt="Votre espace de travail au quotidien : heure, date, météo, tâches et notes en un clic" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Gagnez du temps avec les outils BOYWO : Smart Copy Tracker, convertisseur de texte et Image Optimizer"><img src="assets/images/presentations/promo-2-outils.webp" width="1000" height="1400" alt="Gagnez du temps avec les outils BOYWO : Smart Copy Tracker, convertisseur de texte et Image Optimizer" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Travaillez en musique avec BOYWO Player : glisser-déposer, playlist et commandes de lecture"><img src="assets/images/presentations/promo-3-medias.webp" width="1000" height="1400" alt="Travaillez en musique avec BOYWO Player : glisser-déposer, playlist et commandes de lecture" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Retrouvez tout, tout de suite : explorateur de fichiers avec recherche, notes, tâches, médias, archives et import"><img src="assets/images/presentations/promo-4-fichiers.webp" width="1000" height="1400" alt="Retrouvez tout, tout de suite : explorateur de fichiers avec recherche, notes, tâches, médias, archives et import" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Personnalisez votre espace : thèmes, accessibilité, notifications et informations sur BOYWO"><img src="assets/images/presentations/promo-5-reglages.webp" width="1000" height="1400" alt="Personnalisez votre espace : thèmes, accessibilité, notifications et informations sur BOYWO" loading="lazy" decoding="async"></figure></li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="installer" class="install" aria-labelledby="titre-install">
-    <div class="wrap">
-      <h2 id="titre-install">Installer BOYWO</h2>
-      <p>Installez BOYWO depuis le Chrome Web Store, épinglez-le dans la barre d’outils de Chrome, et retrouvez vos tâches, vos notes et vos outils en un clic.</p>
-      <div class="actions">
-        <a class="btn btn-store" href="https://chromewebstore.google.com/detail/boywo-boost-your-work/joajfaoljmchpllcniehecddanhkolnf?pli=1" target="_blank" rel="noopener">Ajouter à Chrome</a>
-      </div>
-      <p>Vos notes, tâches et fichiers sont enregistrés dans votre navigateur, et la synchronisation passe par votre compte Google. <a href="privacy-policy.html">Consultez la politique de confidentialité</a> pour le détail des données et des services utilisés.</p>
-    </div>
-  </section>
+  <div class="hub-panels" id="hub-panels">
+    <div class="hub-panel" id="panel-smart-copy" role="tabpanel" aria-labelledby="tab-smart-copy" hidden><iframe title="Smart Copy Tracker" data-src="smart-copy.html"></iframe></div>
+    <div class="hub-panel" id="panel-image-editor" role="tabpanel" aria-labelledby="tab-image-editor" hidden><iframe title="Éditeur d’images" data-src="image-editor.html"></iframe></div>
+    <div class="hub-panel" id="panel-musicflow" role="tabpanel" aria-labelledby="tab-musicflow" hidden><iframe title="MusicFlow" data-src="musicflow.html" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+  </div>
+  <noscript><div class="wrap"><p>JavaScript est nécessaire pour utiliser les outils. Pages directes : <a href="smart-copy.html">Smart Copy Tracker</a>, <a href="image-editor.html">Éditeur d’images</a>, <a href="musicflow.html">MusicFlow</a>.</p></div></noscript>
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer" id="hub-footer">
   <div class="wrap">
     <span>© 2026 BOYWO – Boost Your Work</span>
     <nav aria-label="Pied de page">
-      <a href="index.html">Présentation</a>
-      <a href="privacy-policy.html">Politique de confidentialité</a>
+      <a href="../index.html">Présentation</a>
+      <a href="index.html">Outils en ligne</a>
+      <a href="../privacy-policy.html">Politique de confidentialité</a>
     </nav>
   </div>
 </footer>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" hidden>
-  <button type="button" class="lb-close" aria-label="Fermer l’image agrandie">&times;</button>
-  <img src="" alt="">
-  <p class="lb-cap"></p>
-</div>
-<script>
-(function () {
-  var lb = document.getElementById('lightbox');
-  if (!lb) return;
-  var img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap'), closeBtn = lb.querySelector('.lb-close');
-  var opener = null, root = document.documentElement;
-
-  function open(el) {
-    var src = el.querySelector('img');
-    if (!src) return;
-    opener = el;
-    img.src = src.currentSrc || src.src;
-    img.alt = src.alt || '';
-    cap.textContent = src.alt || '';
-    lb.hidden = false;
-    root.classList.add('lb-lock');
-    requestAnimationFrame(function () { lb.classList.add('open'); });
-    closeBtn.focus();
-  }
-  function close() {
-    if (lb.hidden) return;
-    lb.classList.remove('open');
-    lb.hidden = true;
-    img.removeAttribute('src');
-    root.classList.remove('lb-lock');
-    if (opener) { opener.focus(); opener = null; }
-  }
-
-  document.addEventListener('click', function (e) {
-    var z = e.target.closest('.zoomable');
-    if (z && lb.hidden) open(z);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (!lb.hidden) {
-      if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); close(); }
-      else if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
-      return;
-    }
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('zoomable')) {
-      e.preventDefault();
-      open(e.target);
-    }
-  });
-  lb.addEventListener('click', function (e) {
-    if (e.target !== img && e.target !== cap) close();
-  });
-})();
-</script>
+<script src="../assets/js/hub.js"></script>
 </body>
 </html>
