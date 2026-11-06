@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éditeur d'images - BOYWO</title>
+    <link rel="icon" href="../assets/icons/icon-128.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/image-editor.css">
+</head>
+<body class="iep-body">
+
+<svg style="display:none" aria-hidden="true">
+    <symbol id="e-move" viewBox="0 0 24 24"><polyline points="5 9 2 12 5 15"/><polyline points="9 5 12 2 15 5"/><polyline points="15 19 12 22 9 19"/><polyline points="19 9 22 12 19 15"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></symbol>
+    <symbol id="e-pen" viewBox="0 0 24 24"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+    <symbol id="e-marker" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+    <symbol id="e-eraser" viewBox="0 0 24 24"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></symbol>
+    <symbol id="e-arrow" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></symbol>
+    <symbol id="e-rect" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/></symbol>
+    <symbol id="e-ellipse" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="7"/></symbol>
+    <symbol id="e-undo" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></symbol>
+    <symbol id="e-redo" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></symbol>
+    <symbol id="e-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+    <symbol id="e-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="e-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></symbol>
+    <symbol id="e-zoom-in" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></symbol>
+    <symbol id="e-zoom-out" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></symbol>
+    <symbol id="e-fit" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></symbol>
+    <symbol id="e-compare" viewBox="0 0 24 24"><path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"/></symbol>
+    <symbol id="e-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="e-reset" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><polyline points="3 3 3 8 8 8"/></symbol>
+    <symbol id="e-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="e-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
+</svg>
+
+<header class="iep-header">
+    <div class="iep-brand">
+        <img class="iep-logo" src="../assets/icons/icon-128.png" alt="Logo BOYWO" width="40" height="40">
+        <div class="iep-titles">
+            <h1 class="iep-title">Éditeur d'images</h1>
+            <span class="iep-subtitle" id="iep-file-info">Aucune image ouverte</span>
+        </div>
+    </div>
+    <div class="iep-header-actions">
+        <button type="button" class="iep-btn iep-btn-light" id="iep-import-btn">
+            <svg class="iep-ico" aria-hidden="true"><use href="#e-upload"></use></svg> Importer
+        </button>
+        <div class="iep-group" role="group" aria-label="Historique">
+            <button type="button" class="iep-btn iep-btn-icon" id="iep-undo" title="Annuler (Ctrl+Z)" aria-label="Annuler" disabled><svg class="iep-ico" aria-hidden="true"><use href="#e-undo"></use></svg></button>
+            <button type="button" class="iep-btn iep-btn-icon" id="iep-redo" title="Rétablir (Ctrl+Y)" aria-label="Rétablir" disabled><svg class="iep-ico" aria-hidden="true"><use href="#e-redo"></use></svg></button>
+        </div>
+        <button type="button" class="iep-btn iep-btn-light" id="iep-save" title="Enregistrer le projet dans le navigateur (Ctrl+S)" disabled>
+            <svg class="iep-ico" aria-hidden="true"><use href="#e-save"></use></svg> Enregistrer
+        </button>
+        <button type="button" class="iep-btn iep-btn-solid" id="iep-export-btn" disabled>
+            <svg class="iep-ico" aria-hidden="true"><use href="#e-download"></use></svg> Exporter
+        </button>
+    </div>
+</header>
+
+<div class="iep-alert iep-alert-error" id="iep-error" role="alert" hidden>
+    <span id="iep-error-text"></span>
+    <button type="button" class="iep-alert-close" id="iep-error-close" aria-label="Fermer le message"><svg class="iep-ico" aria-hidden="true"><use href="#e-x"></use></svg></button>
+</div>
+<div class="iep-alert iep-alert-info" id="iep-restore" hidden>
+    <span id="iep-restore-text"></span>
+    <span class="iep-alert-actions">
+        <button type="button" class="iep-btn iep-btn-small iep-btn-solid" id="iep-restore-yes">Reprendre</button>
+        <button type="button" class="iep-btn iep-btn-small iep-btn-soft" id="iep-restore-no">Supprimer</button>
+    </span>
+</div>
+
+<main class="iep-layout">
+    <!-- Barre latérale gauche : dessin -->
+    <aside class="iep-side iep-tools" aria-label="Outils de dessin">
+        <section class="iep-panel">
+            <h2 class="iep-panel-title">Outils</h2>
+            <div class="iep-toolgrid" id="iep-toolgrid" role="group" aria-label="Choix de l'outil">
+                <button type="button" class="iep-tool" data-tool="hand" title="Déplacer l'image (V) · ou Espace + glisser" aria-pressed="false"><svg class="iep-ico" aria-hidden="true"><use href="#e-move"></use></svg><span>Déplacer</span></button>
+                <button type="button" class="iep-tool" data-tool="pen" title="Stylo (P)" aria-pressed="true"><svg class="iep-ico" aria-hidden="true"><use href="#e-pen"></use></svg><span>Stylo</span></button>
+                <button type="button" class="iep-tool" data-tool="highlighter" title="Surligneur (M)" aria-pressed="false"><svg class="iep-ico" aria-hidden="true"><use href="#e-marker"></use></svg><span>Surligneur</span></button>
+                <button type="button" class="iep-tool" data-tool="eraser" title="Gomme (E)" aria-pressed="false"><svg class="iep-ico" aria-hidden="true"><use href="#e-eraser"></use></svg><span>Gomme</span></button>
+                <button type="button" class="iep-tool" data-tool="arrow" title="Flèche (A)" aria-pressed="false"><svg class="iep-ico" aria-hidden="true"><use href="#e-arrow"></use></svg><span>Flèche</span></button>
+                <button type="button" class="iep-tool" data-tool="rect" title="Rectangle (R)" aria-pressed="false"><svg class="iep-ico" aria-hidden="true"><use href="#e-rect"></use></svg><span>Rectangle</span></button>
+                <button type="button" class="iep-tool" data-tool="ellipse" title="Cercle / ellipse pour entourer (O)" aria-pressed="false"><svg class="iep-ico" aria-hidden="true"><use href="#e-ellipse"></use></svg><span>Entourer</span></button>
+            </div>
+        </section>
+
+        <section class="iep-panel">
+            <h2 class="iep-panel-title">Couleur</h2>
+            <div class="iep-swatches" id="iep-swatches" role="group" aria-label="Palette de couleurs"></div>
+            <label class="iep-custom-color" for="iep-color">
+                <input type="color" id="iep-color" value="#e74c3c" aria-label="Couleur personnalisée">
+                <span>Couleur personnalisée</span>
+                <code id="iep-color-hex">#E74C3C</code>
+            </label>
+        </section>
+
+        <section class="iep-panel">
+            <h2 class="iep-panel-title">Taille du trait <output id="iep-size-out" class="iep-out">8</output></h2>
+            <input type="range" class="iep-range" id="iep-size" min="1" max="100" value="8" aria-label="Taille du trait">
+            <button type="button" class="iep-btn iep-btn-soft iep-btn-block" id="iep-clear-annot" disabled>
+                <svg class="iep-ico" aria-hidden="true"><use href="#e-trash"></use></svg> Effacer les annotations
+            </button>
+        </section>
+    </aside>
+
+    <!-- Zone de travail -->
+    <section class="iep-stage" aria-label="Zone de travail">
+        <div class="iep-stagebar" role="toolbar" aria-label="Affichage">
+            <button type="button" class="iep-btn iep-btn-icon iep-btn-flat" id="iep-zoom-out" title="Zoom arrière (-)" aria-label="Zoom arrière" disabled><svg class="iep-ico" aria-hidden="true"><use href="#e-zoom-out"></use></svg></button>
+            <output class="iep-zoomval" id="iep-zoom-val">100 %</output>
+            <button type="button" class="iep-btn iep-btn-icon iep-btn-flat" id="iep-zoom-in" title="Zoom avant (+)" aria-label="Zoom avant" disabled><svg class="iep-ico" aria-hidden="true"><use href="#e-zoom-in"></use></svg></button>
+            <button type="button" class="iep-btn iep-btn-small iep-btn-flat" id="iep-zoom-fit" title="Ajuster à la fenêtre (0)" disabled><svg class="iep-ico" aria-hidden="true"><use href="#e-fit"></use></svg> Ajuster</button>
+            <button type="button" class="iep-btn iep-btn-small iep-btn-flat" id="iep-zoom-100" title="Taille réelle (100 %)" disabled>100 %</button>
+            <span class="iep-spacer"></span>
+            <button type="button" class="iep-btn iep-btn-small iep-btn-flat" id="iep-compare-btn" aria-pressed="false" title="Comparer l'original et le résultat" disabled><svg class="iep-ico" aria-hidden="true"><use href="#e-compare"></use></svg> Comparer</button>
+        </div>
+        <div class="iep-workspace" id="iep-workspace">
+            <canvas id="iep-canvas" aria-label="Image en cours d'édition"></canvas>
+            <div class="iep-empty" id="iep-empty">
+                <svg class="iep-ico iep-empty-ico" aria-hidden="true"><use href="#e-image"></use></svg>
+                <p class="iep-empty-title">Glissez une image ici</p>
+                <p class="iep-empty-sub">Formats pris en charge : PNG, JPG, JPEG, SVG<br>Le traitement se fait dans votre navigateur : aucun fichier n'est envoyé.</p>
+                <button type="button" class="iep-btn iep-btn-solid" id="iep-empty-import"><svg class="iep-ico" aria-hidden="true"><use href="#e-upload"></use></svg> Importer une image</button>
+            </div>
+        </div>
+        <div class="iep-comparebar" id="iep-comparebar" hidden>
+            <span>Original</span>
+            <input type="range" class="iep-range" id="iep-compare-pos" min="0" max="100" value="50" aria-label="Position de la comparaison">
+            <span>Modifiée</span>
+        </div>
+    </section>
+
+    <!-- Barre latérale droite : réglages -->
+    <aside class="iep-side iep-adjust" aria-label="Réglages visuels">
+        <section class="iep-panel">
+            <h2 class="iep-panel-title">Réglages de l'image</h2>
+            <div class="iep-sliders" id="iep-sliders">
+                <label class="iep-slider"><span class="iep-slider-label">Luminosité <output data-out="brightness">0</output></span><input type="range" class="iep-range" data-adj="brightness" min="-100" max="100" value="0" disabled></label>
+                <label class="iep-slider"><span class="iep-slider-label">Éclairage <output data-out="lighting">0</output></span><input type="range" class="iep-range" data-adj="lighting" min="-100" max="100" value="0" disabled></label>
+                <label class="iep-slider"><span class="iep-slider-label">Contraste <output data-out="contrast">0</output></span><input type="range" class="iep-range" data-adj="contrast" min="-100" max="100" value="0" disabled></label>
+                <label class="iep-slider"><span class="iep-slider-label">Ombres <output data-out="shadows">0</output></span><input type="range" class="iep-range" data-adj="shadows" min="-100" max="100" value="0" disabled></label>
+            </div>
+        </section>
+        <section class="iep-panel">
+            <h2 class="iep-panel-title">Couleurs RGB</h2>
+            <div class="iep-sliders">
+                <label class="iep-slider iep-slider-r"><span class="iep-slider-label">Rouge <output data-out="red">0</output></span><input type="range" class="iep-range" data-adj="red" min="-100" max="100" value="0" disabled></label>
+                <label class="iep-slider iep-slider-g"><span class="iep-slider-label">Vert <output data-out="green">0</output></span><input type="range" class="iep-range" data-adj="green" min="-100" max="100" value="0" disabled></label>
+                <label class="iep-slider iep-slider-b"><span class="iep-slider-label">Bleu <output data-out="blue">0</output></span><input type="range" class="iep-range" data-adj="blue" min="-100" max="100" value="0" disabled></label>
+            </div>
+            <p class="iep-hint">Double-clic sur un curseur pour le remettre à zéro.</p>
+            <button type="button" class="iep-btn iep-btn-soft iep-btn-block" id="iep-reset-adj" disabled>
+                <svg class="iep-ico" aria-hidden="true"><use href="#e-reset"></use></svg> Réinitialiser les réglages
+            </button>
+        </section>
+    </aside>
+</main>
+
+<dialog class="iep-dialog" id="iep-export-dialog" aria-labelledby="iep-export-title">
+    <h2 id="iep-export-title">Exporter l'image</h2>
+    <div class="iep-form">
+        <label class="iep-field" for="iep-export-name"><span>Nom du fichier</span>
+            <input type="text" id="iep-export-name" maxlength="120" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="iep-field" for="iep-export-format"><span>Format</span>
+            <select id="iep-export-format">
+                <option value="png">PNG (sans perte, transparence conservée)</option>
+                <option value="jpeg">JPG / JPEG (plus léger)</option>
+            </select>
+        </label>
+        <label class="iep-field" for="iep-export-quality" id="iep-quality-field" hidden><span>Qualité JPEG <output id="iep-export-quality-out">95</output> %</span>
+            <input type="range" class="iep-range" id="iep-export-quality" min="60" max="100" value="95">
+        </label>
+        <label class="iep-check" for="iep-export-annot"><input type="checkbox" id="iep-export-annot" checked> Inclure les annotations</label>
+        <p class="iep-hint" id="iep-export-info"></p>
+    </div>
+    <div class="iep-dialog-actions">
+        <button type="button" class="iep-btn iep-btn-soft" id="iep-export-cancel">Annuler</button>
+        <button type="button" class="iep-btn iep-btn-solid" id="iep-export-confirm">Exporter</button>
+    </div>
+</dialog>
+
+<input type="file" id="iep-file" accept=".png,.jpg,.jpeg,.svg,image/png,image/jpeg,image/svg+xml" hidden>
+<div class="iep-toast" id="iep-toast" role="status" aria-live="polite"></div>
+
+<!-- Pas de script inline (CSP Manifest V3) -->
+<script src="../js/image-editor.js"></script>
+</body>
+</html>

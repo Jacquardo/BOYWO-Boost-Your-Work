@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Copy Tracker - BOYWO</title>
+    <link rel="icon" href="../assets/icons/icon-128.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/smart-copy.css">
+</head>
+<body class="sctp-body">
+
+<svg style="display:none" aria-hidden="true">
+    <symbol id="s-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="s-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="s-edit" viewBox="0 0 24 24"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+    <symbol id="s-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="s-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="s-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+    <symbol id="s-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+</svg>
+
+<header class="sctp-header">
+    <div class="sctp-brand">
+        <img class="sctp-logo" src="../assets/icons/icon-128.png" alt="Logo BOYWO" width="40" height="40">
+        <h1 class="sctp-title">Smart Copy Tracker</h1>
+    </div>
+    <div class="sctp-header-actions">
+        <label class="sctp-rec" for="sctp-toggle">
+            <span class="sct-switch">
+                <input type="checkbox" id="sctp-toggle">
+                <span class="sct-switch-track"></span>
+            </span>
+            <span id="sctp-rec-label">Enregistrement désactivé</span>
+        </label>
+        <button type="button" class="sctp-btn sctp-btn-danger" id="sctp-clear-btn" disabled>
+            <svg class="sctp-ico" aria-hidden="true"><use href="#s-trash"></use></svg>
+            Vider l'historique
+        </button>
+    </div>
+</header>
+
+<main class="sctp-main">
+    <section class="sctp-counters" aria-label="Compteurs">
+        <div class="sctp-counter"><strong id="sctp-count-total">0</strong><span>Textes enregistrés</span></div>
+        <div class="sctp-counter"><strong id="sctp-count-upper">0</strong><span>Tout en majuscules</span></div>
+        <div class="sctp-counter"><strong id="sctp-count-mixed">0</strong><span>Avec minuscules</span></div>
+        <div class="sctp-counter sctp-counter-dup"><strong id="sctp-count-dup">0</strong><span>Textes en double</span><small id="sctp-count-dup-hint">Aucun doublon</small></div>
+    </section>
+
+    <div class="sctp-toolbar">
+        <div class="sctp-search">
+            <svg class="sctp-ico" aria-hidden="true"><use href="#s-search"></use></svg>
+            <input type="search" id="sctp-search" placeholder="Rechercher dans l'historique…" aria-label="Rechercher dans l'historique" autocomplete="off">
+        </div>
+        <div class="sctp-views" role="group" aria-label="Affichage">
+            <button type="button" class="sctp-view-btn" id="sctp-view-all" aria-pressed="true">Tout l'historique</button>
+            <button type="button" class="sctp-view-btn" id="sctp-view-dup" aria-pressed="false">Doublons <span class="sctp-pill" id="sctp-view-dup-count">0</span></button>
+        </div>
+    </div>
+
+    <div class="sctp-toolbar sctp-toolbar-actions">
+        <div class="sctp-export" role="group" aria-label="Exporter l'historique">
+            <span class="sctp-export-label"><svg class="sctp-ico" aria-hidden="true"><use href="#s-download"></use></svg> Exporter</span>
+            <button type="button" class="sctp-btn sctp-btn-soft" data-export="txt" disabled>TXT</button>
+            <button type="button" class="sctp-btn sctp-btn-soft" data-export="xlsx" disabled title="Fichier Excel (.xlsx)">Excel</button>
+            <button type="button" class="sctp-btn sctp-btn-soft" data-export="pdf" disabled>PDF</button>
+        </div>
+        <button type="button" class="sctp-btn sctp-btn-danger" id="sctp-dedupe-btn" disabled>
+            <svg class="sctp-ico" aria-hidden="true"><use href="#s-layers"></use></svg>
+            Supprimer les doublons
+        </button>
+    </div>
+
+    <div class="sctp-sections">
+        <section class="sctp-section" aria-labelledby="sctp-h-upper">
+            <div class="sctp-section-head">
+                <h2 id="sctp-h-upper">Tout en majuscules</h2>
+                <span class="sctp-section-count" id="sctp-section-count-upper">0</span>
+            </div>
+            <div class="sctp-list" id="sctp-list-upper"></div>
+        </section>
+        <section class="sctp-section" aria-labelledby="sctp-h-mixed">
+            <div class="sctp-section-head">
+                <h2 id="sctp-h-mixed">Majuscules et minuscules</h2>
+                <span class="sctp-section-count" id="sctp-section-count-mixed">0</span>
+            </div>
+            <div class="sctp-list" id="sctp-list-mixed"></div>
+        </section>
+    </div>
+</main>
+
+<dialog class="sctp-dialog" id="sctp-clear-dialog" aria-labelledby="sctp-clear-title">
+    <h2 id="sctp-clear-title">Vider l'historique ?</h2>
+    <p id="sctp-clear-text">Tous les textes enregistrés seront supprimés définitivement.</p>
+    <div class="sctp-dialog-actions">
+        <button type="button" class="sctp-btn sctp-btn-soft" id="sctp-clear-cancel">Annuler</button>
+        <button type="button" class="sctp-btn sctp-btn-danger-solid" id="sctp-clear-confirm">Tout supprimer</button>
+    </div>
+</dialog>
+
+<dialog class="sctp-dialog" id="sctp-dedupe-dialog" aria-labelledby="sctp-dedupe-title">
+    <h2 id="sctp-dedupe-title">Supprimer les doublons ?</h2>
+    <p id="sctp-dedupe-text"></p>
+    <div class="sctp-dialog-actions">
+        <button type="button" class="sctp-btn sctp-btn-soft" id="sctp-dedupe-cancel">Annuler</button>
+        <button type="button" class="sctp-btn sctp-btn-danger-solid" id="sctp-dedupe-confirm">Supprimer les doublons</button>
+    </div>
+</dialog>
+
+<div class="sctp-toast" id="sctp-toast" role="status" aria-live="polite"></div>
+
+<!-- Pas de script inline (CSP Manifest V3) : tout est dans les fichiers ci-dessous. -->
+<script src="../js/smart-copy-store.js"></script>
+<script src="../js/smart-copy-export.js"></script>
+<script src="../js/smart-copy-page.js"></script>
+</body>
+</html>
