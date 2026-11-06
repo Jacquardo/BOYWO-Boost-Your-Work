@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Copy Tracker – BOYWO</title>
+    <meta name="description" content="Historique de vos textes copiés : recherche, détection des doublons, export TXT, Excel et PDF. Fonctionne dans votre navigateur, sans compte.">
+    <link rel="icon" href="../assets/icons/icon-128.png">
+    <meta name="theme-color" content="#1abc9c">
+    <script src="../assets/js/embed.js"></script>
+    <script src="../assets/js/chrome-shim.js"></script>
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/smart-copy.css">
+    <link rel="stylesheet" href="../assets/css/tools.css">
+</head>
+<body class="sctp-body">
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img src="../assets/icons/icon-128.png" width="38" height="38" alt="">BOYWO</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="../index.html#fonctionnalites">Fonctionnalités</a>
+      <a href="index.html" aria-current="page">Outils en ligne</a>
+      <a href="../index.html#installer">Installer</a>
+      <a href="../privacy-policy.html">Confidentialité</a>
+    </nav>
+  </div>
+</header>
+<p class="tool-back"><a href="index.html">← Tous les outils</a></p>
+
+<svg style="display:none" aria-hidden="true">
+    <symbol id="s-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="s-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="s-edit" viewBox="0 0 24 24"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+    <symbol id="s-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+    <symbol id="s-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="s-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+    <symbol id="s-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+</svg>
+
+<header class="sctp-header">
+    <div class="sctp-brand">
+        <img class="sctp-logo" src="../assets/icons/icon-128.png" alt="Logo BOYWO" width="40" height="40">
+        <h1 class="sctp-title">Smart Copy Tracker</h1>
+    </div>
+    <div class="sctp-header-actions">
+        <label class="sctp-rec" for="sctp-toggle">
+            <span class="sct-switch">
+                <input type="checkbox" id="sctp-toggle">
+                <span class="sct-switch-track"></span>
+            </span>
+            <span id="sctp-rec-label">Enregistrement désactivé</span>
+        </label>
+        <button type="button" class="sctp-btn sctp-btn-danger" id="sctp-clear-btn" disabled>
+            <svg class="sctp-ico" aria-hidden="true"><use href="#s-trash"></use></svg>
+            Vider l'historique
+        </button>
+    </div>
+</header>
+
+<main class="sctp-main" id="contenu">
+    <div class="tool-note">
+        <p><strong>Sur le site</strong>, l’historique enregistre les textes que vous copiez dans cette page ou que vous ajoutez ci-dessous (activez l’interrupteur pour la capture automatique des copies). Pour enregistrer aussi les textes copiés sur tous les autres sites, utilisez l’extension BOYWO.</p>
+        <a class="sctp-btn sctp-btn-soft" href="https://chromewebstore.google.com/detail/boywo-boost-your-work/joajfaoljmchpllcniehecddanhkolnf" target="_blank" rel="noopener">Extension Chrome</a>
+    </div>
+    <form class="sctp-add" id="sctp-add-form">
+        <label for="sctp-add-text">Ajouter un texte à l’historique</label>
+        <textarea id="sctp-add-text" maxlength="20000" placeholder="Collez ou saisissez un texte…"></textarea>
+        <button type="submit" class="sctp-btn sctp-btn-primary">Ajouter</button>
+    </form>
+
+    <section class="sctp-counters" aria-label="Compteurs">
+        <div class="sctp-counter"><strong id="sctp-count-total">0</strong><span>Textes enregistrés</span></div>
+        <div class="sctp-counter"><strong id="sctp-count-upper">0</strong><span>Tout en majuscules</span></div>
+        <div class="sctp-counter"><strong id="sctp-count-mixed">0</strong><span>Avec minuscules</span></div>
+        <div class="sctp-counter sctp-counter-dup"><strong id="sctp-count-dup">0</strong><span>Textes en double</span><small id="sctp-count-dup-hint">Aucun doublon</small></div>
+    </section>
+
+    <div class="sctp-toolbar">
+        <div class="sctp-search">
+            <svg class="sctp-ico" aria-hidden="true"><use href="#s-search"></use></svg>
+            <input type="search" id="sctp-search" placeholder="Rechercher dans l'historique…" aria-label="Rechercher dans l'historique" autocomplete="off">
+        </div>
+        <div class="sctp-views" role="group" aria-label="Affichage">
+            <button type="button" class="sctp-view-btn" id="sctp-view-all" aria-pressed="true">Tout l'historique</button>
+            <button type="button" class="sctp-view-btn" id="sctp-view-dup" aria-pressed="false">Doublons <span class="sctp-pill" id="sctp-view-dup-count">0</span></button>
+        </div>
+    </div>
+
+    <div class="sctp-toolbar sctp-toolbar-actions">
+        <div class="sctp-export" role="group" aria-label="Exporter l'historique">
+            <span class="sctp-export-label"><svg class="sctp-ico" aria-hidden="true"><use href="#s-download"></use></svg> Exporter</span>
+            <button type="button" class="sctp-btn sctp-btn-soft" data-export="txt" disabled>TXT</button>
+            <button type="button" class="sctp-btn sctp-btn-soft" data-export="xlsx" disabled title="Fichier Excel (.xlsx)">Excel</button>
+            <button type="button" class="sctp-btn sctp-btn-soft" data-export="pdf" disabled>PDF</button>
+        </div>
+        <button type="button" class="sctp-btn sctp-btn-danger" id="sctp-dedupe-btn" disabled>
+            <svg class="sctp-ico" aria-hidden="true"><use href="#s-layers"></use></svg>
+            Supprimer les doublons
+        </button>
+    </div>
+
+    <div class="sctp-sections">
+        <section class="sctp-section" aria-labelledby="sctp-h-upper">
+            <div class="sctp-section-head">
+                <h2 id="sctp-h-upper">Tout en majuscules</h2>
+                <span class="sctp-section-count" id="sctp-section-count-upper">0</span>
+            </div>
+            <div class="sctp-list" id="sctp-list-upper"></div>
+        </section>
+        <section class="sctp-section" aria-labelledby="sctp-h-mixed">
+            <div class="sctp-section-head">
+                <h2 id="sctp-h-mixed">Majuscules et minuscules</h2>
+                <span class="sctp-section-count" id="sctp-section-count-mixed">0</span>
+            </div>
+            <div class="sctp-list" id="sctp-list-mixed"></div>
+        </section>
+    </div>
+</main>
+
+<dialog class="sctp-dialog" id="sctp-clear-dialog" aria-labelledby="sctp-clear-title">
+    <h2 id="sctp-clear-title">Vider l'historique ?</h2>
+    <p id="sctp-clear-text">Tous les textes enregistrés seront supprimés définitivement.</p>
+    <div class="sctp-dialog-actions">
+        <button type="button" class="sctp-btn sctp-btn-soft" id="sctp-clear-cancel">Annuler</button>
+        <button type="button" class="sctp-btn sctp-btn-danger-solid" id="sctp-clear-confirm">Tout supprimer</button>
+    </div>
+</dialog>
+
+<dialog class="sctp-dialog" id="sctp-dedupe-dialog" aria-labelledby="sctp-dedupe-title">
+    <h2 id="sctp-dedupe-title">Supprimer les doublons ?</h2>
+    <p id="sctp-dedupe-text"></p>
+    <div class="sctp-dialog-actions">
+        <button type="button" class="sctp-btn sctp-btn-soft" id="sctp-dedupe-cancel">Annuler</button>
+        <button type="button" class="sctp-btn sctp-btn-danger-solid" id="sctp-dedupe-confirm">Supprimer les doublons</button>
+    </div>
+</dialog>
+
+<div class="sctp-toast" id="sctp-toast" role="status" aria-live="polite"></div>
+
+<script src="../assets/js/smart-copy-store.js"></script>
+<script src="../assets/js/smart-copy-export.js"></script>
+<script src="../assets/js/smart-copy-page.js"></script>
+<script src="../assets/js/smart-copy-web.js"></script>
+</body>
+</html>

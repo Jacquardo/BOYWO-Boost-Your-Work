@@ -3,14 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusicFlow - BOYWO</title>
+    <title>MusicFlow – BOYWO</title>
+    <meta name="description" content="Écoutez de la musique libre (Jamendo, Audius), des radios en direct et des vidéos YouTube officielles dans un seul lecteur.">
     <link rel="icon" href="../assets/icons/icon-128.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/musicflow.css">
+    <meta name="theme-color" content="#1abc9c">
+    <script src="../assets/js/embed.js"></script>
+    <script src="../assets/js/chrome-shim.js"></script>
+    <link rel="stylesheet" href="../assets/css/site.css">
+    <link rel="stylesheet" href="../assets/css/musicflow.css">
+    <link rel="stylesheet" href="../assets/css/tools.css">
 </head>
 <body class="mf-body">
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img src="../assets/icons/icon-128.png" width="38" height="38" alt="">BOYWO</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="../index.html#fonctionnalites">Fonctionnalités</a>
+      <a href="index.html" aria-current="page">Outils en ligne</a>
+      <a href="../index.html#installer">Installer</a>
+      <a href="../privacy-policy.html">Confidentialité</a>
+    </nav>
+  </div>
+</header>
+<p class="tool-back"><a href="index.html">← Tous les outils</a></p>
 <svg style="display:none" aria-hidden="true">
     <symbol id="m-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
     <symbol id="m-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3" fill="currentColor" stroke="none"/></symbol>
@@ -41,12 +57,21 @@
 <div class="mf-layout">
     <nav class="mf-nav" aria-label="Sections">
         <button type="button" class="mf-nav-btn" data-tab="discover" aria-pressed="true">Découvrir</button>
+        <button type="button" class="mf-nav-btn" data-tab="radio" aria-pressed="false">Radios</button>
         <button type="button" class="mf-nav-btn" data-tab="local" aria-pressed="false">Mes fichiers</button>
         <button type="button" class="mf-nav-btn" data-tab="favorites" aria-pressed="false">Favoris</button>
         <button type="button" class="mf-nav-btn" data-tab="playlists" aria-pressed="false">Playlists</button>
         <button type="button" class="mf-nav-btn" data-tab="settings" aria-pressed="false">Réglages</button>
     </nav>
-    <main class="mf-main" id="mf-main" aria-live="polite"></main>
+    <div class="mf-content" id="contenu">
+        <section class="mf-video" id="mf-video" aria-label="Lecteur vidéo YouTube" hidden>
+            <div class="mfy-frame"><iframe id="mfy-frame" title="Lecteur YouTube officiel" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+            <div class="mf-video-head"><h2 id="mf-video-title">Vidéo</h2>
+                <div class="mf-video-actions"><a class="mf-btn" id="mfy-open" href="#" target="_blank" rel="noopener noreferrer">Ouvrir sur YouTube</a><button type="button" class="mf-btn" id="mf-video-close">Fermer</button></div></div>
+            <p class="mf-video-channel" id="mf-video-channel"></p>
+        </section>
+        <main class="mf-main" id="mf-main" aria-live="polite"></main>
+    </div>
 </div>
 
 <footer class="mf-player" aria-label="Lecteur">
@@ -78,11 +103,13 @@
 <input type="file" id="mf-folder-input" webkitdirectory multiple hidden>
 <div class="mf-toast" id="mf-toast" role="status" aria-live="polite"></div>
 
-<!-- Pas de script inline (CSP Manifest V3). audio-db.js = bibliothèque locale BOYWO réutilisée telle quelle. -->
-<script src="../audio-db.js"></script>
-<script src="../js/musicflow/mf-config.js"></script>
-<script src="../js/musicflow/mf-store.js"></script>
-<script src="../js/musicflow/mf-providers.js"></script>
-<script src="../js/musicflow/mf-page.js"></script>
+<!-- audio-db.js = bibliothèque locale BOYWO (IndexedDB), réutilisée telle quelle. mf-engine.js = moteur audio de l'extension, ici dans la page. -->
+<script src="../assets/js/audio-db.js"></script>
+<script src="../assets/js/musicflow/mf-config.js"></script>
+<script src="../assets/js/musicflow/mf-store.js"></script>
+<script src="../assets/js/musicflow/mf-providers.js"></script>
+<script src="../assets/js/musicflow/mf-ytplayer.js"></script>
+<script src="../assets/js/musicflow/mf-engine.js"></script>
+<script src="../assets/js/musicflow/mf-site.js"></script>
 </body>
 </html>
