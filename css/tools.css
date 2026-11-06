@@ -1,0 +1,90 @@
+/* =========================================================
+   BOYWO – Outils en ligne : harmonisation avec le site
+   Chargé APRÈS site.css et la feuille de l'outil (smart-copy.css / image-editor.css / musicflow.css).
+   Reprend la palette et la police du site (menthe / sarcelle / encre) à la place des couleurs de l'extension.
+   ========================================================= */
+
+/* Page affichée dans le hub (iframe) : le hub fournit déjà l'en-tête et le pied de page du site */
+html.embedded .site-header, html.embedded .site-footer, html.embedded .tool-back { display: none; }
+
+.sctp-body, .iep-body, .mf-body {
+    --tool-1: #0f8a74; --tool-2: #0b6b5b;
+    --sctp-c1: var(--tool-1); --sctp-c2: var(--tool-2); --sctp-text: var(--ink); --sctp-muted: var(--muted); --sctp-line: var(--line);
+    --iep-c1: var(--tool-1);  --iep-c2: var(--tool-2);  --iep-text: var(--ink);  --iep-muted: var(--muted);  --iep-line: var(--line);
+    --mf-c1: var(--tool-2);   --mf-c2: var(--tool-1);   --mf-text: var(--ink);   --mf-muted: var(--muted);   --mf-line: var(--line);
+    font-family: var(--font); color: var(--ink); background: var(--paper);
+}
+.sctp-body button, .sctp-body textarea, .sctp-body input,
+.iep-body button, .iep-body input, .iep-body select, .mf-body button, .mf-body input { font-family: inherit; }
+
+/* En-têtes d'outils : bandeau clair, sans dégradé (le site garde la couleur pour les actions) */
+.sctp-header, .iep-header, .mf-header {
+    position: static; color: var(--ink); background: var(--white); box-shadow: none; border-bottom: 2px solid var(--line);
+}
+.sctp-logo, .iep-logo, .mf-logo { display: none; }
+.sctp-title, .iep-title, .mf-title { font-weight: 800; letter-spacing: -.02em; }
+.mf-sub, .iep-subtitle { opacity: 1; color: var(--muted); }
+.mf-nav { top: 16px; }
+
+/* Boutons : même forme que les boutons du site */
+.sctp-btn, .iep-btn, .mf-btn { border-radius: 999px; }
+.sctp-btn-primary, .iep-btn-solid, .mf-btn-solid, .iep-header .iep-btn-solid { color: #fff; background: var(--ink); box-shadow: none; filter: none; }
+.sctp-btn-primary:not(:disabled):hover, .iep-btn-solid:not(:disabled):hover, .mf-btn-solid:hover, .iep-header .iep-btn-solid:not(:disabled):hover { background: var(--teal); filter: none; }
+.iep-btn-light, .iep-btn-icon { color: var(--ink); background: var(--sand); }
+.iep-btn-light:not(:disabled):hover, .iep-btn-icon:not(:disabled):hover { background: var(--line); }
+.sctp-header .sctp-btn-danger { color: var(--sctp-danger); background: rgba(231, 76, 60, .1); }
+.sctp-header .sctp-btn-danger:not(:disabled):hover { color: #fff; background: var(--sctp-danger); }
+.sctp-rec .sct-switch-track { background: rgba(0, 0, 0, .22); }
+.sctp-rec .sct-switch input:checked + .sct-switch-track { background: var(--tool-2); }
+.sctp-rec .sct-switch input:checked + .sct-switch-track::after { background: #fff; }
+.mf-search input { border-color: var(--line); background: var(--paper); }
+.mf-search input:focus { border-color: var(--tool-2); box-shadow: 0 0 0 3px rgba(11, 107, 91, .18); }
+.sctp-search input:focus { border-color: var(--tool-2); }
+
+/* Fonds */
+.sctp-section { background: rgba(255, 255, 255, .6); }
+.sctp-counter, .sctp-clip, .iep-panel, .iep-stage, .mf-row, .mf-card, .mf-tile { box-shadow: none; border: 1px solid var(--line); }
+.mf-player { background: var(--white); border-top: 2px solid var(--line); box-shadow: none; }
+
+/* La règle « section { padding } » du site ne doit pas s'appliquer aux blocs des outils qui n'ont pas de marge propre */
+.sctp-counters, .iep-stage { padding: 0; }
+
+/* Bandeau d'explication (ce que fait l'outil sur le site, et ce que seule l'extension sait faire) */
+.tool-note { display: flex; gap: .8rem 1.2rem; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    margin: 0 0 18px; padding: 12px 16px; border-radius: 14px; background: var(--sand); color: var(--ink); font-size: .9rem; line-height: 1.5; }
+.tool-note p { margin: 0; flex: 1 1 320px; }
+.tool-note a { font-weight: 700; }
+.tool-back { width: min(1120px, 100% - 2.5rem); margin: 0 auto; padding: .2rem 0 .7rem; font-size: .9rem; }
+
+/* Smart Copy Tracker : ajout manuel d'un texte */
+.sctp-add { display: grid; gap: 8px; margin: 0 0 20px; padding: 14px; border-radius: 14px; background: var(--white); border: 1px solid var(--line); }
+.sctp-add label { font-weight: 700; font-size: .9rem; }
+.sctp-add textarea { width: 100%; min-height: 64px; resize: vertical; padding: 10px 12px; border: 2px solid var(--line); border-radius: 10px; font-size: .92rem; line-height: 1.5; color: inherit; background: var(--paper); outline: none; }
+.sctp-add textarea:focus { border-color: var(--tool-2); background: #fff; }
+.sctp-add .sctp-btn { justify-self: start; }
+
+/* ---------- Hub « Outils » ---------- */
+.hub-body { margin: 0; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; background: var(--paper); }
+.hub-tabs { background: var(--white); border-bottom: 2px solid var(--line); }
+.hub-tabs .wrap { display: flex; gap: .4rem; flex-wrap: wrap; padding-block: .6rem; }
+.hub-tab { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: .5rem 1.1rem; border: 2px solid transparent; border-radius: 999px; background: transparent; color: var(--ink); font: 700 .98rem var(--font); cursor: pointer; text-decoration: none; }
+.hub-tab:hover { background: var(--sand); }
+.hub-tab[aria-selected="true"] { background: var(--ink); color: #fff; }
+.hub-main { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.hub-intro { padding: 2rem 0 1rem; }
+.hub-intro h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 4.4vw, 3rem); letter-spacing: -.03em; line-height: 1.1; }
+.hub-intro p { margin: 0; max-width: 40rem; color: var(--muted); }
+.hub-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; padding: 1rem 0 2.5rem; }
+.hub-card { display: flex; flex-direction: column; gap: .6rem; padding: 1.4rem; border-radius: var(--radius); background: var(--white); border: 2px solid var(--line); text-decoration: none; color: var(--ink); }
+.hub-card:hover { border-color: var(--mint); }
+.hub-card h2 { margin: 0; font-size: 1.3rem; }
+.hub-card p { margin: 0; color: var(--muted); font-size: .98rem; }
+.hub-card .tag { margin-top: auto; font-weight: 700; color: var(--teal); }
+.hub-panels { flex: 1 1 auto; min-height: 0; position: relative; }
+.hub-panel { position: absolute; inset: 0; }
+.hub-panel[hidden] { display: none; }
+.hub-panel iframe { display: block; width: 100%; height: 100%; border: 0; background: var(--paper); }
+.hub-home[hidden] { display: none; }
+@media (max-width: 860px) { .hub-cards { grid-template-columns: 1fr; } }
+@media (min-width: 861px) { .hub-body.is-tool { height: 100vh; height: 100dvh; } }
+@media (max-width: 860px) { .hub-panels { min-height: 78vh; min-height: 78dvh; } }
