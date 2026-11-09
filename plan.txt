@@ -1,67 +1,41 @@
-BOYWO-Boost-Your-Work/
+BOYWO-Boost-Your-Work/                (dépôt du SITE, distinct du dépôt de l'extension)
 ├── assets/
-│   ├── icons/
-│   │   ├── android-chrome-192x192.png
-│   │   ├── android-chrome-512x512.png
-│   │   ├── apple-touch-icon.png
-│   │   ├── ico.txt
-│   │   ├── icon-128.png
-│   │   ├── icon-16.png
-│   │   ├── icon-32.png
-│   │   ├── icon-48.png
-│   │   ├── icon.txt
-│   │   └── site.webmanifest
-│   └── images/
-│       └── presentations/
-│           ├── apercu-accueil.webp
-│           ├── apercu-notes.webp
-│           ├── apercu-outils.webp
-│           ├── apercu-planning.webp
-│           ├── apercu-taches.webp
-│           ├── ecran-accueil.webp
-│           ├── ecran-fichiers.webp
-│           ├── ecran-medias.webp
-│           ├── ecran-outils.webp
-│           ├── ecran-reglages.webp
-│           ├── present.txt
-│           ├── promo-1-accueil.webp
-│           ├── promo-2-outils.webp
-│           ├── promo-3-medias.webp
-│           ├── promo-4-fichiers.webp
-│           └── promo-5-reglages.webp
+│   ├── icons/ …                      (inchangé)
+│   └── images/presentations/ …       (inchangé)
 ├── css/
+│   ├── site.css                      style commun du site
+│   ├── tools.css                     harmonisation des outils avec le site
+│   ├── smart-copy.css
 │   ├── image-editor.css
-│   ├── musicflow.css
-│   ├── site.css
-│   └── tools.css
-├── index.html
+│   └── musicflow.css
 ├── js/
+│   ├── chrome-shim.js                remplace chrome.storage / chrome.runtime pour les outils
+│   ├── embed.js                      masque l'en-tête du site quand l'outil est dans le hub
+│   ├── hub.js                        onglets de la page Outils
 │   ├── audio-db.js
-│   ├── chrome-shim.js
-│   ├── hub.js
-│   ├── image-editor.js
-│   ├── musicflow/
-│   │   ├── mf-config.js
-│   │   ├── mf-engine.js
-│   │   ├── mf-providers.js
-│   │   ├── mf-site.js
-│   │   ├── mf-store.js
-│   │   └── mf-ytplayer.js
+│   ├── smart-copy-store.js
 │   ├── smart-copy-export.js
 │   ├── smart-copy-page.js
-│   ├── smart-copy-store.js
-│   └── smart-copy-web.js
+│   ├── smart-copy-web.js
+│   ├── image-editor.js
+│   └── musicflow/
+│       ├── mf-config.js
+│       ├── mf-store.js
+│       ├── mf-providers.js
+│       ├── mf-ytplayer.js
+│       ├── mf-engine.js
+│       └── mf-site.js
 ├── outils/
+│   ├── index.html                    hub (onglets)
+│   ├── smart-copy.html
 │   ├── image-editor.html
-│   ├── image_editor.html
-│   ├── index.html
-│   ├── musicflow.html
-│   └── smart-copy.html
-├── plan.txt
+│   └── musicflow.html
 ├── player/
-│   └── player.html
+│   └── player.html                   lecteur YouTube hébergé (adresse inchangée)
+├── site/
+│   ├── musicflow-player.html         ancien lecteur : à supprimer après vérification
+│   └── musicflow-player.js
+├── index.html
 ├── presentation.html
 ├── privacy-policy.html
-└── site/
-    ├── musicflow-player.html
-    └── musicflow-player.js
+└── plan.txt
