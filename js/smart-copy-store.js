@@ -2,6 +2,8 @@
  * BOYWO - Smart Copy Tracker : stockage partagé (une seule source de vérité)
  *
  * Chargé par :
+ *  - [site web] ce fichier tourne dans la page : chrome.storage est fourni par js/chrome-shim.js (IndexedDB) ;
+ *    l'option « force » de addClip permet l'ajout manuel même quand l'enregistrement automatique est coupé.
  *  - js/background.js (service worker, via import) : enregistre les textes reçus du content script ;
  *  - index.html (carte « Smart Copy Tracker » de la page Outils) ;
  *  - outils/smart_copy_tracker.html (gestionnaire complet).
@@ -97,10 +99,10 @@
     }
 
     // Appelé par le service worker pour chaque copie détectée par le content script.
-    function addClip({ text, host }) {
+    function addClip({ text, host, force }) {
         return withLock(async () => {
             const { enabled, clips } = await readAll();
-            if (!enabled) return { added: false, reason: 'disabled' };
+            if (!enabled && !force) return { added: false, reason: 'disabled' };
 
             let value = String(text == null ? '' : text);
             if (!value.trim()) return { added: false, reason: 'empty' };
