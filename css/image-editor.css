@@ -14,7 +14,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    font-family: var(--font);
     font-size: 14px;
     color: var(--iep-text);
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%) fixed;
