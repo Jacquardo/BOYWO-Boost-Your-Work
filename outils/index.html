@@ -3,314 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BOYWO – Boost Your Work : tâches, notes, planning, médias et fichiers dans Chrome</title>
-<meta name="description" content="BOYWO est une extension Chrome qui réunit tâches, notes, planning, lecteur audio, explorateur de fichiers et outils de productivité, avec synchronisation Google Drive.">
+<title>Outils en ligne – BOYWO</title>
+<meta name="description" content="Smart Copy Tracker, éditeur d’images et MusicFlow réunis au même endroit, directement dans votre navigateur et sans compte.">
 <meta name="theme-color" content="#1abc9c">
-<link rel="canonical" href="https://jacquardo.github.io/BOYWO-Boost-Your-Work/">
-<meta property="og:url" content="https://jacquardo.github.io/BOYWO-Boost-Your-Work/">
-<link rel="icon" href="assets/icons/icon-128.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BOYWO – Boost Your Work">
-<meta property="og:description" content="Tâches, notes, planning, médias et fichiers réunis dans une extension Chrome.">
-<meta property="og:image" content="https://jacquardo.github.io/BOYWO-Boost-Your-Work/assets/images/presentations/promo-1-accueil.webp">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="canonical" href="https://jacquardo.github.io/BOYWO-Boost-Your-Work/outils/">
+<link rel="icon" href="../assets/icons/icon-128.png">
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/tools.css">
 </head>
-<body>
+<body class="hub-body" id="hub-body">
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/icons/icon-128.png" width="38" height="38" alt="">BOYWO</a>
+    <a class="brand" href="../index.html"><img src="../assets/icons/icon-128.png" width="38" height="38" alt="">BOYWO</a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#captures">En images</a>
-      <a href="#fonctionnalites">Fonctionnalités</a>
-      <a href="outils/">Outils en ligne</a>
-      <a href="#apercu">Aperçu</a>
-      <a href="#installer">Installer</a>
-      <a href="privacy-policy.html">Confidentialité</a>
+      <a href="../index.html#fonctionnalites">Fonctionnalités</a>
+      <a href="index.html" aria-current="page">Outils en ligne</a>
+      <a href="../index.html#installer">Installer</a>
+      <a href="../privacy-policy.html">Confidentialité</a>
     </nav>
   </div>
 </header>
 
-<main id="contenu">
-  <section class="hero" aria-labelledby="titre-hero">
+<div class="hub-tabs">
+  <div class="wrap" role="tablist" aria-label="Outils BOYWO">
+    <button type="button" class="hub-tab" role="tab" id="tab-home" data-tool="" aria-controls="hub-home" aria-selected="true">Tous les outils</button>
+    <button type="button" class="hub-tab" role="tab" id="tab-smart-copy" data-tool="smart-copy" aria-controls="panel-smart-copy" aria-selected="false">Smart Copy Tracker</button>
+    <button type="button" class="hub-tab" role="tab" id="tab-image-editor" data-tool="image-editor" aria-controls="panel-image-editor" aria-selected="false">Éditeur d’images</button>
+    <button type="button" class="hub-tab" role="tab" id="tab-musicflow" data-tool="musicflow" aria-controls="panel-musicflow" aria-selected="false">MusicFlow</button>
+  </div>
+</div>
+
+<main class="hub-main" id="contenu">
+  <div class="hub-home" id="hub-home" role="tabpanel" aria-labelledby="tab-home">
     <div class="wrap">
-      <div>
-        <h1 id="titre-hero">Boost Your Work, dans votre navigateur</h1>
-        <p class="lead">BOYWO réunit vos tâches, vos notes, votre planning, votre musique et vos fichiers dans une seule extension Chrome, et les synchronise avec votre compte Google.</p>
-        <div class="actions">
-          <a class="btn" href="https://chromewebstore.google.com/detail/boywo-boost-your-work/joajfaoljmchpllcniehecddanhkolnf?pli=1" target="_blank" rel="noopener">Installer BOYWO</a>
-          <a class="btn ghost" href="privacy-policy.html">Lire la politique de confidentialité</a>
-        </div>
+      <div class="hub-intro">
+        <h1>Les outils BOYWO, en ligne</h1>
+        <p>Trois outils de l’extension, utilisables directement ici, sans installation ni compte. Vos données restent dans votre navigateur.</p>
       </div>
-      <div class="stage zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : BOYWO, votre espace de travail au quotidien : heure, tâches et notes réunies dans une seule extension Chrome">
-        <img src="assets/images/presentations/promo-1-accueil.webp" width="1000" height="1400" alt="BOYWO, votre espace de travail au quotidien : heure, tâches et notes réunies dans une seule extension Chrome">
+      <div class="hub-cards">
+        <a class="hub-card" href="#smart-copy" data-tool="smart-copy">
+          <h2>Smart Copy Tracker</h2>
+          <p>L’historique de vos textes copiés : recherche, détection des doublons, modification et export en TXT, Excel ou PDF.</p>
+          <span class="tag">Ouvrir l’outil →</span>
+        </a>
+        <a class="hub-card" href="#image-editor" data-tool="image-editor">
+          <h2>Éditeur d’images</h2>
+          <p>Annotez, recadrez, réglez les couleurs et exportez vos images. Elles ne quittent pas votre appareil.</p>
+          <span class="tag">Ouvrir l’outil →</span>
+        </a>
+        <a class="hub-card" href="#musicflow" data-tool="musicflow">
+          <h2>MusicFlow</h2>
+          <p>Musique libre (Jamendo, Audius), radios en direct de plusieurs pays et vidéos YouTube officielles, dans un seul lecteur.</p>
+          <span class="tag">Ouvrir l’outil →</span>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="benefits" aria-label="Les atouts de BOYWO">
-    <div class="wrap">
-      <div class="benefit"><h3>Tout au même endroit</h3><p>Tâches, notes, planning, musique et fichiers dans un seul panneau, à un clic dans la barre d’outils de Chrome.</p></div>
-      <div class="benefit"><h3>Pour gagner du temps</h3><p>Un planning avec compte à rebours, un convertisseur de texte, un historique de copies : moins d’allers-retours entre les onglets.</p></div>
-      <div class="benefit"><h3>Vos données vous appartiennent</h3><p>BOYWO n’utilise aucun serveur de l’éditeur, qui n’a accès à aucune de vos données. <a href="privacy-policy.html">Lire la politique de confidentialité</a>.</p></div>
-    </div>
-  </section>
-
-  <section class="showcase" id="captures" aria-labelledby="titre-captures">
-    <div class="wrap">
-      <h2 id="titre-captures">BOYWO en images</h2>
-      <p class="intro">Voici l’extension telle que vous la verrez, écran après écran.</p>
-      <article class="show">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Écran d’accueil de BOYWO : l’heure, la date, la météo, les tâches, les notes et la barre de navigation"><img src="assets/images/presentations/ecran-accueil.webp" width="452" height="690" alt="Écran d’accueil de BOYWO : l’heure, la date, la météo, les tâches, les notes et la barre de navigation" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Votre journée, dès l’ouverture</h3>
-          <p>Un clic sur l’icône BOYWO dans Chrome, et l’essentiel est devant vous.</p>
-          <ul>
-            <li><strong>L’heure, la date et la météo</strong> de votre position, dans l’en-tête et sur l’horloge.</li>
-            <li><strong>Mes Tâches</strong> : ajoutez une tâche en un clic, suivez-la et terminez-la.</li>
-            <li><strong>Mes Notes</strong> : notez une idée ou une information avant de l’oublier.</li>
-            <li><strong>Une barre de navigation</strong> en bas : Accueil, Outils, Médias, Fichiers et Compte.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show flip">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Onglet Outils de BOYWO : convertisseur de texte, Smart Copy Tracker avec ses compteurs, et Image Optimizer"><img src="assets/images/presentations/ecran-outils.webp" width="454" height="687" alt="Onglet Outils de BOYWO : convertisseur de texte, Smart Copy Tracker avec ses compteurs, et Image Optimizer" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Des outils prêts à l’emploi</h3>
-          <p>Les petits utilitaires qu’on cherche d’habitude sur dix sites différents.</p>
-          <ul>
-            <li><strong>Smart Copy Tracker</strong> : l’historique de vos textes copiés, avec le nombre de textes enregistrés, en majuscules, en minuscules et en double. Un interrupteur vous laisse activer ou couper l’enregistrement.</li>
-            <li><strong>Convertisseur de texte</strong> : passez un texte en majuscules ou en minuscules.</li>
-            <li><strong>Horloge flottante</strong> : une horloge affichée par-dessus vos pages.</li>
-            <li><strong>Image Optimizer</strong> : redimensionnez, recadrez et nettoyez vos images.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Onglet Médias de BOYWO : zone de dépôt de fichiers audio et lecteur BOYWO Player"><img src="assets/images/presentations/ecran-medias.webp" width="452" height="686" alt="Onglet Médias de BOYWO : zone de dépôt de fichiers audio et lecteur BOYWO Player" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Votre musique, sans quitter votre travail</h3>
-          <p>BOYWO Player lit vos propres fichiers audio.</p>
-          <ul>
-            <li><strong>Glisser-déposer</strong> vos fichiers audio, ou utilisez « Ajouter des fichiers » et « Ajouter un dossier ».</li>
-            <li><strong>Un lecteur complet</strong> : lecture aléatoire, piste précédente et suivante, répétition et favoris.</li>
-            <li><strong>Égaliseur et vitesse de lecture</strong> réglables, et lecture qui continue en arrière-plan.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show flip">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Explorateur de fichiers de BOYWO : dossiers Notes, Tâches, Médias, Archives et Import"><img src="assets/images/presentations/ecran-fichiers.webp" width="454" height="688" alt="Explorateur de fichiers de BOYWO : dossiers Notes, Tâches, Médias, Archives et Import" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Tout est rangé au même endroit</h3>
-          <p>Un explorateur pour retrouver ce que vous avez créé ou importé.</p>
-          <ul>
-            <li><strong>Des dossiers clairs</strong> : Notes, Tâches, Médias, Archives et Import.</li>
-            <li><strong>Une recherche</strong> pour retrouver un élément rapidement.</li>
-            <li><strong>Vos propres dossiers</strong>, une corbeille pour restaurer ce que vous avez supprimé, et des favoris.</li>
-          </ul>
-        </div>
-      </article>
-      <article class="show">
-        <div class="shot zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Réglages de BOYWO : Thèmes, Accessibilité, Notifications et À propos"><img src="assets/images/presentations/ecran-reglages.webp" width="450" height="456" alt="Réglages de BOYWO : Thèmes, Accessibilité, Notifications et À propos" loading="lazy" decoding="async"></div>
-        <div>
-          <h3>Réglé à votre façon</h3>
-          <p>Le profil et les réglages vous laissent adapter BOYWO à vos habitudes.</p>
-          <ul>
-            <li><strong>Thèmes</strong> : couleurs, police et taille du texte.</li>
-            <li><strong>Accessibilité</strong> : notifications et localisation.</li>
-            <li><strong>Notifications</strong> : à activer ou désactiver.</li>
-            <li><strong>Profil</strong> : surnom, photo et connexion à votre compte Google, avec synchronisation sur demande vers Google Drive.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="fonctionnalites" aria-labelledby="titre-fonctions">
-    <div class="wrap">
-      <h2 id="titre-fonctions">Toutes les fonctionnalités</h2>
-      <p class="intro">L’extension s’organise comme sa barre de navigation : Accueil, Outils, Médias, Fichiers et Compte.</p>
-
-      <div class="module">
-        <div>
-          <h3>Accueil</h3>
-          <p class="tag">Votre journée d’un coup d’œil.</p>
-        </div>
-        <ul>
-          <li><strong>Tâches</strong><span>Titre, description, rappel, épinglage, report d’une tâche en retard et statut.</span></li>
-          <li><strong>Notes</strong><span>Notes colorées avec pièce jointe, retrouvables dans la corbeille après suppression.</span></li>
-          <li><strong>Planning</strong><span>Début et fin de journée, pause déjeuner et petite pause, avec le compte à rebours de la phase en cours.</span></li>
-          <li><strong>Heure et météo</strong><span>Horloge, date et météo locale (température, humidité, vent, lever et coucher du soleil).</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Outils</h3>
-          <p class="tag">Les petits utilitaires du quotidien.</p>
-        </div>
-        <ul>
-          <li><strong>Horloge flottante</strong><span>Une horloge affichée par-dessus vos pages, avec choix du thème, de la police, du fuseau horaire et de la taille.</span></li>
-          <li><strong>Convertisseur de texte</strong><span>Passez un texte en minuscules ou en majuscules, avec compteur de mots et bouton Copier.</span></li>
-          <li><strong>Smart Copy Tracker</strong><span>Un historique des textes copiés, avec recherche, détection des doublons et export en XLS, PDF ou TXT. L’enregistrement s’active et se coupe à tout moment.</span></li>
-          <li><strong>Image Optimizer</strong><span>Supprimez les métadonnées d’une image, redimensionnez-la, recadrez-la pour les réseaux sociaux et générez des icônes en 16, 32, 48 et 128 pixels.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Médias</h3>
-          <p class="tag">Le lecteur audio BOYWO Player.</p>
-        </div>
-        <ul>
-          <li><strong>Playlist</strong><span>Importez des fichiers ou un dossier audio (MP3, OGG, WAV) par glisser-déposer.</span></li>
-          <li><strong>Égaliseur intégré</strong><span>Basses, médiums et aigus réglables, avec des préréglages comme Bass Boost ou Classique.</span></li>
-          <li><strong>Lecture en arrière-plan</strong><span>La musique continue quand vous fermez la fenêtre de l’extension.</span></li>
-          <li><strong>Favoris, vitesse et mini-lecteur</strong><span>Marquez vos pistes préférées, changez la vitesse de lecture et réduisez le lecteur.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Fichiers</h3>
-          <p class="tag">Un explorateur pour tout ranger.</p>
-        </div>
-        <ul>
-          <li><strong>Dossiers personnalisés</strong><span>Classez notes, tâches, images et pistes audio dans vos propres dossiers.</span></li>
-          <li><strong>Recherche et sélection multiple</strong><span>Retrouvez un élément dans tout l’espace, puis déplacez ou supprimez plusieurs éléments à la fois.</span></li>
-          <li><strong>Favoris et corbeille</strong><span>Restaurez un élément supprimé ou supprimez-le définitivement.</span></li>
-          <li><strong>Import de fichiers</strong><span>Ajoutez vos propres fichiers à l’explorateur.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Apparence et réglages</h3>
-          <p class="tag">BOYWO prend vos couleurs.</p>
-        </div>
-        <ul>
-          <li><strong>Thèmes</strong><span>Couleurs de fond, dégradés de 2 à 4 couleurs, et barre de navigation en style dégradé, plein, verre ou contour.</span></li>
-          <li><strong>Texte</strong><span>Choix de la police et de la taille du texte.</span></li>
-          <li><strong>Fond d’écran</strong><span>Un fond qui change chaque jour, ou une de vos images en fond personnalisé.</span></li>
-          <li><strong>Bulle flottante et ville par défaut</strong><span>Une bulle BOYWO sur les pages visitées pour ouvrir l’application, et une ville de repli pour la météo si la localisation est refusée.</span></li>
-        </ul>
-      </div>
-
-      <div class="module">
-        <div>
-          <h3>Compte</h3>
-          <p class="tag">Votre espace sur tous vos appareils.</p>
-        </div>
-        <ul>
-          <li><strong>Connexion Google</strong><span>Connectez-vous avec votre compte Google et choisissez un surnom et une photo.</span></li>
-          <li><strong>Synchronisation Google Drive</strong><span>Lancez une synchronisation à la demande et consultez la date de la dernière.</span></li>
-          <li><strong>Déconnexion</strong><span>Déconnectez-vous de Google sans supprimer vos données.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="benefits" id="outils-en-ligne" aria-labelledby="titre-outils-en-ligne">
-    <div class="wrap">
-      <div class="wide">
-        <h2 id="titre-outils-en-ligne">Essayez trois outils, directement en ligne</h2>
-        <p class="intro">Sans installation ni compte : ouvrez-les ici, dans votre navigateur. Vos données y restent.</p>
-      </div>
-      <div class="benefit"><h3>Smart Copy Tracker</h3><p>L’historique de vos textes copiés, avec recherche, doublons et export en TXT, Excel ou PDF.</p><a class="more" href="outils/#smart-copy">Ouvrir Smart Copy Tracker</a></div>
-      <div class="benefit"><h3>Éditeur d’images</h3><p>Annotez, recadrez, réglez les couleurs et exportez vos images sans les envoyer nulle part.</p><a class="more" href="outils/#image-editor">Ouvrir l’éditeur d’images</a></div>
-      <div class="benefit"><h3>MusicFlow</h3><p>Musique libre, radios en direct et vidéos YouTube officielles réunies dans un seul lecteur.</p><a class="more" href="outils/#musicflow">Ouvrir MusicFlow</a></div>
-    </div>
-  </section>
-
-  <section id="apercu" class="gallery-section" aria-labelledby="titre-apercu">
-    <div class="wrap">
-      <h2 id="titre-apercu">Les visuels de BOYWO</h2>
-      <p class="intro">Faites défiler pour découvrir BOYWO en quelques écrans.</p>
-      <ul class="rail" tabindex="0" aria-label="Visuels de présentation de BOYWO, défilement horizontal">
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Votre espace de travail au quotidien : heure, date, météo, tâches et notes en un clic"><img src="assets/images/presentations/promo-1-accueil.webp" width="1000" height="1400" alt="Votre espace de travail au quotidien : heure, date, météo, tâches et notes en un clic" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Gagnez du temps avec les outils BOYWO : Smart Copy Tracker, convertisseur de texte et Image Optimizer"><img src="assets/images/presentations/promo-2-outils.webp" width="1000" height="1400" alt="Gagnez du temps avec les outils BOYWO : Smart Copy Tracker, convertisseur de texte et Image Optimizer" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Travaillez en musique avec BOYWO Player : glisser-déposer, playlist et commandes de lecture"><img src="assets/images/presentations/promo-3-medias.webp" width="1000" height="1400" alt="Travaillez en musique avec BOYWO Player : glisser-déposer, playlist et commandes de lecture" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Retrouvez tout, tout de suite : explorateur de fichiers avec recherche, notes, tâches, médias, archives et import"><img src="assets/images/presentations/promo-4-fichiers.webp" width="1000" height="1400" alt="Retrouvez tout, tout de suite : explorateur de fichiers avec recherche, notes, tâches, médias, archives et import" loading="lazy" decoding="async"></figure></li>
-        <li style="display:contents"><figure class="zoomable" tabindex="0" role="button" aria-label="Agrandir l’image : Personnalisez votre espace : thèmes, accessibilité, notifications et informations sur BOYWO"><img src="assets/images/presentations/promo-5-reglages.webp" width="1000" height="1400" alt="Personnalisez votre espace : thèmes, accessibilité, notifications et informations sur BOYWO" loading="lazy" decoding="async"></figure></li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="installer" class="install" aria-labelledby="titre-install">
-    <div class="wrap">
-      <h2 id="titre-install">Installer BOYWO</h2>
-      <p>Installez BOYWO depuis le Chrome Web Store, épinglez-le dans la barre d’outils de Chrome, et retrouvez vos tâches, vos notes et vos outils en un clic.</p>
-      <div class="actions">
-        <a class="btn btn-store" href="https://chromewebstore.google.com/detail/boywo-boost-your-work/joajfaoljmchpllcniehecddanhkolnf?pli=1" target="_blank" rel="noopener">Ajouter à Chrome</a>
-      </div>
-      <p>Vos notes, tâches et fichiers sont enregistrés dans votre navigateur, et la synchronisation passe par votre compte Google. <a href="privacy-policy.html">Consultez la politique de confidentialité</a> pour le détail des données et des services utilisés.</p>
-    </div>
-  </section>
+  <div class="hub-panels" id="hub-panels">
+    <div class="hub-panel" id="panel-smart-copy" role="tabpanel" aria-labelledby="tab-smart-copy" hidden><iframe title="Smart Copy Tracker" data-src="smart-copy.html"></iframe></div>
+    <div class="hub-panel" id="panel-image-editor" role="tabpanel" aria-labelledby="tab-image-editor" hidden><iframe title="Éditeur d’images" data-src="image-editor.html"></iframe></div>
+    <div class="hub-panel" id="panel-musicflow" role="tabpanel" aria-labelledby="tab-musicflow" hidden><iframe title="MusicFlow" data-src="musicflow.html" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+  </div>
+  <noscript><div class="wrap"><p>JavaScript est nécessaire pour utiliser les outils. Pages directes : <a href="smart-copy.html">Smart Copy Tracker</a>, <a href="image-editor.html">Éditeur d’images</a>, <a href="musicflow.html">MusicFlow</a>.</p></div></noscript>
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer" id="hub-footer">
   <div class="wrap">
     <span>© 2026 BOYWO – Boost Your Work</span>
     <nav aria-label="Pied de page">
-      <a href="index.html">Présentation</a>
-      <a href="outils/">Outils en ligne</a>
-      <a href="privacy-policy.html">Politique de confidentialité</a>
+      <a href="../index.html">Présentation</a>
+      <a href="index.html">Outils en ligne</a>
+      <a href="../privacy-policy.html">Politique de confidentialité</a>
     </nav>
   </div>
 </footer>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image agrandie" hidden>
-  <button type="button" class="lb-close" aria-label="Fermer l’image agrandie">&times;</button>
-  <img src="" alt="">
-  <p class="lb-cap"></p>
-</div>
-<script>
-(function () {
-  var lb = document.getElementById('lightbox');
-  if (!lb) return;
-  var img = lb.querySelector('img'), cap = lb.querySelector('.lb-cap'), closeBtn = lb.querySelector('.lb-close');
-  var opener = null, root = document.documentElement;
-
-  function open(el) {
-    var src = el.querySelector('img');
-    if (!src) return;
-    opener = el;
-    img.src = src.currentSrc || src.src;
-    img.alt = src.alt || '';
-    cap.textContent = src.alt || '';
-    lb.hidden = false;
-    root.classList.add('lb-lock');
-    requestAnimationFrame(function () { lb.classList.add('open'); });
-    closeBtn.focus();
-  }
-  function close() {
-    if (lb.hidden) return;
-    lb.classList.remove('open');
-    lb.hidden = true;
-    img.removeAttribute('src');
-    root.classList.remove('lb-lock');
-    if (opener) { opener.focus(); opener = null; }
-  }
-
-  document.addEventListener('click', function (e) {
-    var z = e.target.closest('.zoomable');
-    if (z && lb.hidden) open(z);
-  });
-  document.addEventListener('keydown', function (e) {
-    if (!lb.hidden) {
-      if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); close(); }
-      else if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
-      return;
-    }
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('zoomable')) {
-      e.preventDefault();
-      open(e.target);
-    }
-  });
-  lb.addEventListener('click', function (e) {
-    if (e.target !== img && e.target !== cap) close();
-  });
-})();
-</script>
+<script src="../js/hub.js"></script>
 </body>
 </html>
