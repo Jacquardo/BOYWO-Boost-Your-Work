@@ -130,7 +130,7 @@
     function errorBox(e) {
         if (e && e.message === 'NO_CLIENT_ID') {
             return h('div', { class: 'mf-card' }, h('h2', {}, 'Catalogue en ligne indisponible'),
-                h('p', {}, 'La clé de l’application n’est pas encore configurée (assets/js/musicflow/mf-config.js). Vos fichiers locaux restent utilisables.'));
+                h('p', {}, 'La clé de l’application n’est pas encore configurée (js/musicflow/mf-config.js). Vos fichiers locaux restent utilisables.'));
         }
         return h('div', { class: 'mf-card' }, h('h2', {}, 'Oups'), h('p', {}, 'Le service de streaming ne répond pas (' + ((e && e.message) || 'erreur') + ').'));
     }

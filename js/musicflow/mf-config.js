@@ -34,6 +34,7 @@ MF.config = {
     // Radio Browser : annuaire communautaire gratuit, SANS clé. Les serveurs sont essayés dans l'ordre (repli automatique).
     radio: {
         countrycode: 'MG',   // Madagascar
+        httpsOnly: true,     // site web (HTTPS) : seuls les flux https:// peuvent être lus
         limit: 100,
         servers: ['de1.api.radio-browser.info', 'de2.api.radio-browser.info', 'fr1.api.radio-browser.info', 'nl1.api.radio-browser.info', 'at1.api.radio-browser.info']
     },

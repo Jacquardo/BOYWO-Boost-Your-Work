@@ -111,6 +111,7 @@
         for (const s of Array.isArray(rows) ? rows : []) {
             const url = httpUrl(s && (s.url_resolved || s.url));
             if (!url || s.hls === 1 || seen.has(url)) continue; // HLS (.m3u8) : non lisible par un <audio> Chrome
+            if (((cfg().radio || {}).httpsOnly) && !/^https:/i.test(url)) continue; // site web (HTTPS) : les flux http:// sont bloqués (contenu mixte)
             seen.add(url);
             out.push({
                 id: 'radio:' + s.stationuuid, source: 'radio', live: true,
