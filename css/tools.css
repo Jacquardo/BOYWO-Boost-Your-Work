@@ -66,7 +66,8 @@ html.embedded .site-header, html.embedded .site-footer, html.embedded .tool-back
 /* ---------- Hub « Outils » ---------- */
 .hub-body { margin: 0; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; background: var(--paper); }
 .hub-tabs { background: var(--white); border-bottom: 2px solid var(--line); }
-.hub-tabs .wrap { display: flex; gap: .4rem; flex-wrap: wrap; padding-block: .6rem; }
+.hub-tabs .wrap { display: flex; gap: .4rem 1rem; flex-wrap: wrap; align-items: center; padding-block: .6rem; }
+.hub-tablist { display: flex; gap: .4rem; flex-wrap: wrap; }
 .hub-tab { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: .5rem 1.1rem; border: 2px solid transparent; border-radius: 999px; background: transparent; color: var(--ink); font: 700 .98rem var(--font); cursor: pointer; text-decoration: none; }
 .hub-tab:hover { background: var(--sand); }
 .hub-tab[aria-selected="true"] { background: var(--ink); color: #fff; }
@@ -88,3 +89,15 @@ html.embedded .site-header, html.embedded .site-footer, html.embedded .tool-back
 @media (max-width: 860px) { .hub-cards { grid-template-columns: 1fr; } }
 @media (min-width: 861px) { .hub-body.is-tool { height: 100vh; height: 100dvh; } }
 @media (max-width: 860px) { .hub-panels { min-height: 78vh; min-height: 78dvh; } }
+
+/* Synchronisation facultative avec l'extension (hub) */
+.hub-sync { margin-left: auto; display: flex; align-items: center; gap: .5rem .7rem; flex-wrap: wrap; font-size: .9rem; color: var(--muted); max-width: 100%; }
+.hub-sync[hidden] { display: none; }
+.hub-sync-text { max-width: 36rem; line-height: 1.35; }
+.hub-sync[data-state="error"] .hub-sync-text, .hub-sync[data-state="auth-expired"] .hub-sync-text { color: #b03a2e; }
+.hub-sync[data-state="idle"] .hub-sync-text { color: var(--teal); font-weight: 600; }
+.hub-sync-btn { min-height: 38px; padding: .3rem 1rem; border: 2px solid var(--ink); border-radius: 999px; background: transparent; color: var(--ink); font: 700 .88rem var(--font); cursor: pointer; }
+.hub-sync-btn:hover:not(:disabled) { background: var(--ink); color: #fff; }
+.hub-sync-btn:disabled { opacity: .5; cursor: progress; }
+.hub-sync-main { background: var(--ink); color: #fff; }
+.hub-sync-main:hover:not(:disabled) { background: var(--teal); border-color: var(--teal); }
