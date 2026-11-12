@@ -10,7 +10,7 @@
  * Cet identifiant est public par nature (il apparaît dans la page de connexion Google).
  */
 globalThis.BOYWO_WEB_SYNC = {
-    clientId: '',
+    clientId: '553444379082-itibaqld31dhit294kq3k6ds21v5v56s.apps.googleusercontent.com',
     scopes: [
         'https://www.googleapis.com/auth/drive.file',
         'https://www.googleapis.com/auth/userinfo.profile',
