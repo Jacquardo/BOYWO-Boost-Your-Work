@@ -1,40 +1,29 @@
 BOYWO-Boost-Your-Work/                (dépôt du SITE, distinct du dépôt de l'extension)
-├── assets/
-│   ├── icons/ …                      (inchangé)
-│   └── images/presentations/ …       (inchangé)
+├── assets/                           (inchangé : icônes et images)
 ├── css/
 │   ├── site.css                      style commun du site
-│   ├── tools.css                     harmonisation des outils avec le site
+│   ├── tools.css                     harmonisation des outils + barre de synchronisation
 │   ├── smart-copy.css
 │   ├── image-editor.css
 │   └── musicflow.css
 ├── js/
-│   ├── chrome-shim.js                remplace chrome.storage / chrome.runtime pour les outils
-│   ├── embed.js                      masque l'en-tête du site quand l'outil est dans le hub
+│   ├── chrome-shim.js                remplace les API Chrome (stockage, messages) sur le site
+│   ├── embed.js                      masque l'en-tête du site quand un outil est dans le hub
 │   ├── hub.js                        onglets de la page Outils
+│   ├── sync-web-config.js            identifiant OAuth web (à renseigner) - connexion Google facultative
+│   ├── sync-web.js                   synchronisation facultative avec l'extension (Drive)
+│   ├── sync-merge.js                 fusion à 3 voies (copie de l'extension)
 │   ├── audio-db.js
-│   ├── smart-copy-store.js
-│   ├── smart-copy-export.js
-│   ├── smart-copy-page.js
-│   ├── smart-copy-web.js
+│   ├── smart-copy-store.js / smart-copy-export.js / smart-copy-page.js / smart-copy-web.js
 │   ├── image-editor.js
-│   └── musicflow/
-│       ├── mf-config.js
-│       ├── mf-store.js
-│       ├── mf-providers.js
-│       ├── mf-ytplayer.js
-│       ├── mf-engine.js
-│       └── mf-site.js
+│   └── musicflow/ (mf-config, mf-store, mf-providers, mf-ytplayer, mf-engine, mf-site)
 ├── outils/
-│   ├── index.html                    hub (onglets)
+│   ├── index.html                    hub à onglets + barre de synchronisation
 │   ├── smart-copy.html
 │   ├── image-editor.html
 │   └── musicflow.html
-├── player/
-│   └── player.html                   lecteur YouTube hébergé (adresse inchangée)
-├── site/
-│   ├── musicflow-player.html         ancien lecteur : à supprimer après vérification
-│   └── musicflow-player.js
+├── player/player.html                lecteur YouTube hébergé (extension + site)
+├── site/                             (ancien lecteur MusicFlow : à garder tant que non vérifié)
 ├── index.html
 ├── presentation.html
 ├── privacy-policy.html

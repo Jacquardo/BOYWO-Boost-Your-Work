@@ -114,7 +114,7 @@
               <tr><td>Audius (api.audius.co)</td><td>Quand vous cherchez ou écoutez dans MusicFlow</td><td>Votre recherche, pour obtenir les titres ; la musique est ensuite lue depuis les serveurs d’Audius</td></tr>
               <tr><td>Radio Browser (*.api.radio-browser.info) et serveurs de diffusion des radios</td><td>Quand vous ouvrez les radios de MusicFlow, puis quand vous écoutez une station</td><td>Le pays ou le nom de station recherché ; le flux est lu depuis le serveur de la station choisie</td></tr>
               <tr><td>YouTube (Google) : API de recherche (googleapis.com), miniatures (i.ytimg.com) et lecteur officiel</td><td>Quand une recherche MusicFlow inclut YouTube, et quand vous lancez une vidéo</td><td>Votre recherche ; la vidéo est lue par le lecteur officiel de YouTube, chargé depuis une page hébergée par GitHub Pages (jacquardo.github.io)</td></tr>
-              <tr><td>Google (connexion et Drive)</td><td>À la connexion et à la synchronisation</td><td>Voir la section « Compte Google et synchronisation Google Drive »</td></tr>
+              <tr><td>Google (connexion et Drive)</td><td>À la connexion et à la synchronisation, dans l’extension ou, si vous le choisissez, sur la page « Outils en ligne » du site</td><td>Voir la section « Compte Google et synchronisation Google Drive » et, pour le site, « Outils en ligne du site »</td></tr>
             </tbody>
           </table>
         </div>
@@ -127,13 +127,22 @@
           <table>
             <thead><tr><th>Outil</th><th>Données enregistrées dans votre navigateur</th><th>Services contactés</th></tr></thead>
             <tbody>
-              <tr><td>Smart Copy Tracker</td><td>Les textes que vous copiez dans la page ou que vous ajoutez à la main, et l’état de l’interrupteur d’enregistrement</td><td>Aucun</td></tr>
+              <tr><td>Smart Copy Tracker</td><td>Les textes que vous copiez dans la page ou que vous ajoutez à la main, et l’état de l’interrupteur d’enregistrement</td><td>Aucun, sauf Google Drive si vous activez la synchronisation facultative (voir plus bas)</td></tr>
               <tr><td>Éditeur d’images</td><td>Les images que vous ouvrez sont traitées sur votre appareil et ne sont pas envoyées. Le dernier projet que vous enregistrez (image et annotations) et la dernière couleur de stylo utilisée sont conservés dans le navigateur</td><td>Aucun</td></tr>
               <tr><td>MusicFlow</td><td>Vos favoris, vos playlists et les fichiers audio que vous importez ; le cache des recherches, effacé à la fermeture de l’onglet</td><td>Jamendo, Audius, Radio Browser et les serveurs des radios, YouTube (voir « Services externes contactés »)</td></tr>
             </tbody>
           </table>
         </div>
         <p>Ces données sont stockées dans la base de données de votre navigateur, pour ce site uniquement. Elles sont distinctes de celles de l’extension et ne sont pas partagées avec elle. Vous pouvez les effacer à tout moment depuis les réglages de votre navigateur (données du site jacquardo.github.io).</p>
+        <h3>Connexion Google facultative : synchronisation avec l’extension</h3>
+        <p>Sur la page « Outils en ligne », vous pouvez vous connecter avec Google pour synchroniser l’historique de Smart Copy Tracker avec l’extension. Cette connexion n’est jamais obligatoire : tous les outils fonctionnent sans compte.</p>
+        <ul>
+          <li>La bibliothèque de connexion de Google n’est chargée que lorsque vous cliquez sur « Se connecter avec Google », ou si vous vous étiez déjà connecté auparavant.</li>
+          <li>Le site demande l’accès aux fichiers que BOYWO crée dans votre Google Drive (autorisation « drive.file »), ainsi que votre nom et votre adresse e-mail, pour afficher le compte connecté.</li>
+          <li>Il lit et met à jour le fichier de synchronisation BOYWO-data.json, en ne modifiant que l’historique de Smart Copy Tracker ; le reste du fichier est conservé tel quel. Avant sa première écriture, il crée une copie de sauvegarde (BOYWO-data.avant-site.json).</li>
+          <li>Les échanges se font directement entre votre navigateur et Google ; aucun serveur de l’éditeur n’intervient.</li>
+          <li>« Se déconnecter » révoque l’accès côté navigateur et efface le suivi de synchronisation stocké sur cet appareil ; vos données locales sont conservées. Vous pouvez aussi retirer l’accès depuis votre compte Google.</li>
+        </ul>
         <p>Le lecteur YouTube n’est chargé que lorsque vous lancez une vidéo. Il est alors fourni par YouTube (Google), qui peut utiliser des cookies et reçoit votre adresse IP selon sa propre politique de confidentialité. Les pages d’outils n’utilisent par ailleurs ni cookies, ni outil de mesure d’audience, ni police ou image hébergée ailleurs.</p>
 
         <h2 id="autorisations">Autorisations de l’extension</h2>
@@ -162,7 +171,7 @@
         <p>Pour toute demande, écrivez à : <a href="mailto:jacquardodev@gmail.com">jacquardodev@gmail.com</a></p>
 
         <h2 id="limitee">Données des API Google</h2>
-        <p>L’utilisation et le transfert par BOYWO des informations reçues des API Google respecteront la <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">politique relative aux données utilisateur des services d’API Google</a>, y compris ses exigences d’utilisation limitée.</p>
+        <p>L’utilisation et le transfert par BOYWO (extension et connexion facultative du site) des informations reçues des API Google respecteront la <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">politique relative aux données utilisateur des services d’API Google</a>, y compris ses exigences d’utilisation limitée.</p>
 
         <h2 id="modifications">Modifications de cette politique</h2>
         <p>Cette politique peut évoluer avec l’extension. La date de dernière mise à jour figure en haut de la page ; la version en vigueur est toujours celle publiée à cette adresse.</p>
