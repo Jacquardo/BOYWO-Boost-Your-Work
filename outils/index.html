@@ -27,11 +27,20 @@
 </header>
 
 <div class="hub-tabs">
-  <div class="wrap" role="tablist" aria-label="Outils BOYWO">
+  <div class="wrap">
+    <div class="hub-tablist" role="tablist" aria-label="Outils BOYWO">
     <button type="button" class="hub-tab" role="tab" id="tab-home" data-tool="" aria-controls="hub-home" aria-selected="true">Tous les outils</button>
     <button type="button" class="hub-tab" role="tab" id="tab-smart-copy" data-tool="smart-copy" aria-controls="panel-smart-copy" aria-selected="false">Smart Copy Tracker</button>
     <button type="button" class="hub-tab" role="tab" id="tab-image-editor" data-tool="image-editor" aria-controls="panel-image-editor" aria-selected="false">Éditeur d’images</button>
     <button type="button" class="hub-tab" role="tab" id="tab-musicflow" data-tool="musicflow" aria-controls="panel-musicflow" aria-selected="false">MusicFlow</button>
+    </div>
+    <div class="hub-sync" id="hub-sync" data-state="signed-out" hidden>
+      <span class="hub-sync-text" id="sync-status" role="status" aria-live="polite"></span>
+      <button type="button" class="hub-sync-btn hub-sync-main" id="sync-connect">Se connecter avec Google</button>
+      <button type="button" class="hub-sync-btn" id="sync-now" hidden>Synchroniser</button>
+      <button type="button" class="hub-sync-btn hub-sync-main" id="sync-create" hidden>Créer une sauvegarde depuis le site</button>
+      <button type="button" class="hub-sync-btn" id="sync-disconnect" hidden>Se déconnecter</button>
+    </div>
   </div>
 </div>
 
@@ -80,6 +89,9 @@
     </nav>
   </div>
 </footer>
+<script src="../js/chrome-shim.js"></script>
 <script src="../js/hub.js"></script>
+<script src="../js/sync-web-config.js"></script>
+<script type="module" src="../js/sync-web.js"></script>
 </body>
 </html>
